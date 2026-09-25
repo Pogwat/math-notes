@@ -28,8 +28,69 @@ $
   x^r = D_(r,1)sum_(b=0)^(x-1) [b^0]  + D_(r,2)sum_(b=0)^(x-1)sum_(c=0)^(b-1) [ c^0 ] + D_(r,3)sum_(b=0)^(x-1) sum_(c=0)^(b-1)sum_(d=0)^(c-1) [d^0]  + ...+  D_(r,r) overbrace(sum_(b=0)^(x-1) sum_(c=0)^(b-1)sum_(d=0)^(c-1)...sum_(n_n=0 )^(n_(n-1) -1)[n_(n) ^0],n "sums") + 0^r \
 $ \
 
-#import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+
 $
   #[pascals identity]\ 
   binom(a,n)=binom(a-1,n)+binom(a-1,n-1) \
+ 
+  #import "@preview/fletcher:0.5.8" as fletcher: diagram, node, edge
+  #import fletcher.shapes: diamond
+  
+
+  #diagram(
+    node-stroke: 1pt,
+    node-fill: rgb("f9f9f9"),
+    edge-stroke: 1pt,
+    mark-scale: 80%,
+    spacing: (1mm, 10mm), // (columns, rows)
+    
+    // Row 0: Start Node
+    node((0, 0), [$cancel(binom(a,n))$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+
+    
+
+    node((1, 1), [$binom(a-1,n-1)$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((0,0)),
+
+    
+    node((-1, 1), [$cancel(binom(a-1,n))$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((0,0)),
+
+    node((0, 2), [$binom(a-1,n-1)$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-1,1)),
+    
+    node((-2, 2), [$cancel(binom(a-2,n))$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-1,1)),
+
+    node((-1, 3), [$binom(a-1,n-1)$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-2,2)),
+
+    node((-3, 3), [$cancel(binom(a-3,n))$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-2,2)),
+
+    node((-2, 4), [$binom(a-1,n-1)$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-3,3)),
+    
+    node((-4, 4), [$cancel(binom(a-4,n))$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-3,3)),
+
+    node((-5, 5), [$binom(a-a,n)$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-3,3)),
+    
+    node((-3,5), [$binom(a-a,n-1)$], corner-radius: 5pt, fill: rgb("e3f2fd")),
+    edge((-4,4))
+
+    
+  )\
+  "apply pascals identity recursivley to lhs"\
+  binom(a,n)=sum_(b=0)^(a-1)[binom(b,n-1)]+ binom(0,n)
+
+
+
+
+  
+
+
+
+
 $
