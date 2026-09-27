@@ -105,4 +105,18 @@ $
     x^r = D_(r,1)sum_(b=0)^(x-1) [1]  + D_(r,2)sum_(b=0)^(x-1)sum_(c=0)^(b-1) [ 1 ] + D_(r,3)sum_(b=0)^(x-1) sum_(c=0)^(b-1)sum_(d=0)^(c-1) [1]  + ...+  D_(r,r) overbrace(sum_(b=0)^(x-1) sum_(c=0)^(b-1)sum_(d=0)^(c-1)...sum_(n_n=0 )^(n_(n-1) -1)[1],r "sums") + 0^r \
     
     x^r = D_(r,1)binom(x,1)  + D_(r,2)binom(x,2) + D_(r,3)binom(x,3)  + ...+  D_(r,r) overbrace(binom(x,r),r "sums") + 0^r \
+
+    x^r = sum_(b=1)^(r)[D_(r,b) binom(x,b)] +0^r \
+    #[let $D_(r,0) = 0^r$] \
+    x^r = sum_(b=0)^(r)[D_(r,b) binom(x,b)]
+$
+
+$
+   x^r = sum_(b=0)^(r) [ binom(r,b) (x-1)^b ] \
+   x^r = sum_(b=0)^(r)[D_(r,b) binom(x,b)] \
+   
+   x^r = sum_(b=0)^(r) [ binom(r,b) sum_(c=0)^(b)[D_(b,c) binom(x-1,c)] ] \
+   #[$x^r$ can be expressed as $r^r$ times some choose coefficents that depend on x? ]
+
+   
 $
