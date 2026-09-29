@@ -157,7 +157,9 @@ $
     \
     x^r = sum_(c=0)^(r-1)[overbrace(binom(x,c+1),"Diffrence sums (c+1)" ) overbrace(sum_(d=c)^(r-1)[D_(d,c)binom(r,d)], "Diffrence coefficents")]+overbrace(0^r,0"th Diffrence") \
 
-    D_(r,c) = overbrace(sum_(d=c-1)^(r-1)[D_(d,c-1)binom(r,d)], "Diffrence coefficents" 1 ... r)+overbrace(0^r,0"th Diffrence") \
+    D_(r,c+1) = overbrace(sum_(d=c)^(r-1)[D_(d,c)binom(r,d)], "Diffrence coefficents")]\
+
+    D_(r,c) = overbrace(sum_(d=c-1)^(r-1)[D_(d,c-1)binom(r,d)], "Diffrence coefficents") \
 
 $
 
