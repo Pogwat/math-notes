@@ -111,12 +111,52 @@ $
     x^r = sum_(b=0)^(r)[D_(r,b) binom(x,b)]
 $
 
+
 $
-   x^r = sum_(b=0)^(r) [ binom(r,b) (x-1)^b ] \
-   x^r = sum_(b=0)^(r)[D_(r,b) binom(x,b)] \
-   
-   x^r = sum_(b=0)^(r) [ binom(r,b) sum_(c=0)^(b)[D_(b,c) binom(x-1,c)] ] \
-   #[$x^r$ can be expressed as $r^r$ times some choose coefficents that depend on x? ]
+  x^r = sum_(b=0)^(x-1) [ sum_(c=0)^(r-1) [binom(r,c)b^c ]] + 0^r   
+$
+every expansion of $b^c$ adds a sum layer to the expanded terms, the $sum_(b=0)^(x-1)$ is this accumulator 
+
+each new layer of $b_(n)^(c)$ adds a sum to the expanded terms, so each new  layer can only produce diffrences upto $n$ (beacuse it has a term with a minimum of $n$ sums)
+
+therfore to get the nth diffrence you would on need to expand n times, (n-1 times if you count the base identity as the 0th expansion beacuse it adds a outer sum to the terms); diliberate expansion of terms with $r$
+
+$
+  x^r = sum_(b=0)^(x-1) [binom(r,0)b^0 + binom(r,1)b^1 + binom(r,2)b^2 ... binom(r,r-1)b^(r-1)   ] + 0^r  \
+  b^0 = 1 \
+  b^1 = sum_(c=0)^(x-1) [overbrace(binom(1,0)c^0,1)] \
+  b^2 = sum_(c=0)^(x-1) [overbrace(binom(2,0)c^0,1) + binom(2,1)sum_(d=0)^(c-1) [overbrace(binom(1,0)d^0,1)] ] \
+  #[each layer contains a 1 term it will have L (layer) amount of sums (for $r>=0$)] \ 
+  x^r = sum_(b=0)^(x-1) [ sum_(c=1)^(r-1) [binom(r,c)b^c ]+overbrace(binom(r,0)b^0,1 "at" r>=1)] + overbrace(0^r,1 "at" r=0) 
+$
+
+$
+  x^r = sum_(b=0)^(x-1) [ sum_(c=0)^(r-1) [binom(r,c)b^c ]] + 0^r   \
+  x^r = sum_(b=0)^(r)[D_(r,b) binom(x,b)] \
+  x^r = sum_(b=0)^(x-1) [ sum_(c=0)^(r-1) [binom(r,c)sum_(d=0)^(c)[D_(c,d) binom(b,d)] ]] + 0^r \
+
+    x^r = sum_(b=0)^(x-1) [ binom(r,0)sum_(d=0)^(0)[D_(0,d) binom(b,d)] + binom(r,1)sum_(d=0)^(1)[D_(1,d) binom(b,d)] + ... + binom(r,r-1)sum_(d=0)^(r-1)[D_(r-1,d) binom(b,d)] ] + 0^r \
+$
+        grouping the terms by $binom(b,d)$ tells the coefficents of each diffrence level, this will produce a formula for $D_(r,c)$ in terms of $D_(r,c)$ from lower degree terms. 
+
+        since every time you lower the degree you loose a diffrence level until $D_0$, there will be a falling number of each diffrence level in the sum. $sum^(r-1) D_0 + sum^(r-2) D_1 +... sum^(r-r) D_(r-1)$ (grouping the inner sum, excluding $sum^(x-1)$)
+$
+  x^r = sum_(b=0)^(x-1) [ binom(r,0)sum_(d=0)^(0)[D_(0,d) binom(b,d)] + binom(r,1)sum_(d=0)^(1)[D_(1,d) binom(b,d)] + ... + binom(r,r-1)sum_(d=0)^(r-1)[D_(r-1,d) binom(b,d)] ] + 0^r \
+
+    x^r = sum_(b=0)^(x-1) [ overbrace([binom(r,0)D_(0,0)+ binom(r,1)D_(1,0) + ... + binom(r,r-1)D_(r-1,0)],D_(r,0+1))binom(b,0) + ... + overbrace([binom(r,r-1)D_(r-1,r-1)], D_(r,r-1+1)) binom(b,r-1) ] + 0^r \
+$
+
+    beacuse of outer sum the diffrence level has 1 added to it,the grouped coefficents on $binom(b,n)$ tells the diffrence level of the $n$th diffrence as this would expand to $n$ falling sums 
+$
+  x^r = sum_(b=0)^(x-1) [sum_(c=0)^(r-1)[D_(c,0)binom(r,c)]binom(b,0) + sum_(c=1)^(r-1)[D_(c,1)binom(r,c)]binom(b,1) + ... + sum_(c=r-1)^(r-1)[D_(c,r-1)binom(r,c)]binom(b,r-1)]+0^r \
+
+    x^r = sum_(b=0)^(x-1) [sum_(c=0)^(r-1)[binom(b,c)sum_(d=c)^(r-1)[D_(d,c)binom(r,d)]]]+0^r
+$
+
+
+
+
+
+
 
    
-$
