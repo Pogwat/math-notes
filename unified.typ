@@ -150,7 +150,15 @@ $
 $
   x^r = sum_(b=0)^(x-1) [sum_(c=0)^(r-1)[D_(c,0)binom(r,c)]binom(b,0) + sum_(c=1)^(r-1)[D_(c,1)binom(r,c)]binom(b,1) + ... + sum_(c=r-1)^(r-1)[D_(c,r-1)binom(r,c)]binom(b,r-1)]+0^r \
 
-    x^r = sum_(b=0)^(x-1) [sum_(c=0)^(r-1)[binom(b,c)sum_(d=c)^(r-1)[D_(d,c)binom(r,d)]]]+0^r
+    x^r = sum_(b=0)^(x-1) [sum_(c=0)^(r-1)[binom(b,c)sum_(d=c)^(r-1)[D_(d,c)binom(r,d)]]]+0^r \
+
+    
+    binom(a,n)=underbrace(sum_(b=0)^(a-1)[sum_(c=0)^(b-1)[sum_(d=0)^(c-1)[...sum_(n_n=0)^(n_(n-1)-1)[1]]]],"n sums")+ binom(0,n) \
+    \
+    x^r = sum_(c=0)^(r-1)[overbrace(binom(x,c+1),"Diffrence sums (c+1)" ) overbrace(sum_(d=c)^(r-1)[D_(d,c)binom(r,d)], "Diffrence coefficents")]+overbrace(0^r,0"th Diffrence") \
+
+    D_(r,c) = overbrace(sum_(d=c-1)^(r-1)[D_(d,c-1)binom(r,d)], "Diffrence coefficents" 1 ... r)+overbrace(0^r,0"th Diffrence") \
+
 $
 
 
