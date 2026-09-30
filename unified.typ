@@ -157,6 +157,8 @@ $
     \
     x^r = sum_(c=0)^(r-1)[overbrace(binom(x,c+1),"Diffrence sums (c+1)" ) overbrace(sum_(d=c)^(r-1)[D_(d,c)binom(r,d)], "Diffrence coefficents")]+overbrace(0^r,0"th Diffrence") \
 
+    D_(r,0)=0^r \
+
     D_(0,0)=1 \
 
     D_(r,c+1) = overbrace(sum_(d=c)^(r-1)[D_(d,c)binom(r,d)], "Diffrence coefficents") \
@@ -177,9 +179,18 @@ $
   #[since $x^r$ only has diffrences upto level $r$ , $D_(r,(c>r))$ can be treated as 0] \
   D_(r,c) = sum_(d=0)^(r-1)[D_(d,c-1)binom(r,d)] \
   D_(r,c) = sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[D_(e,c-2)binom(d,e)] binom(r,d)] \
-  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[D_(n_(c-1),c-c)binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums")
-$
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[D_(n_(c-1),c-c)binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[D_(n_(c-1),0)binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+  D_(r,0)=0^r \
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[0^(n_(c-1)) binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+
   
+$
+  since $0^r= 1$ only at $r=0$, the inner sums $0^(n_(c-1))$ will only be $1$ at the start, since $0^(!=0)$ is $0$ the $binom(n_(c-2),n_(c-1))$ will cancle out when not at the start of the sum, the sum only produces a single non zero run at its start, as long as the inner most upper bound is not negative, if $r>=c$ the inner sum is guarnted to run at least once
+$
+
+   D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[0^(n_(c-1)) binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+$
 
 
 
