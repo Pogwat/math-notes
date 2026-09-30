@@ -166,12 +166,20 @@ $
 $
 
 $
-
    D_(r,c) = sum_(d=c-1)^(r-1)[D_(d,c-1)binom(r,d)] \
    D_(r,c) = sum_(d=c-1)^(r-1)[sum_(e=c-2)^(d-1)[D_(e,c-2)binom(d,e)]binom(r,d)] \
    #[expand c-1 times, (c times if you count the base diffrences identity as the 0th expansion )] \
    D_(r,c) = overbrace(sum_(d=c-1)^(r-1)[sum_(e=c-2)^(d-1)[sum_(f=c-3)^(e-1)[...sum_(n_(c-1)=c-c)^(n_(c-2)-1)[D_(n_(c-1),c-c)binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums")
 $
+
+$
+  D_(r,c) = sum_(d=c-1)^(r-1)[D_(d,c-1)binom(r,d)] \
+  #[since $x^r$ only has diffrences upto level $r$ , $D_(r,(c>r))$ can be treated as 0] \
+  D_(r,c) = sum_(d=0)^(r-1)[D_(d,c-1)binom(r,d)] \
+  D_(r,c) = sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[D_(e,c-2)binom(d,e)] binom(r,d)] \
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[D_(n_(c-1),c-c)binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums")
+$
+  
 
 
 
