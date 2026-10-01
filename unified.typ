@@ -189,7 +189,18 @@ $
   since $0^r= 1$ only at $r=0$, the inner sums $0^(n_(c-1))$ will only be $1$ at the start, since $0^(!=0)$ is $0$ the $binom(n_(c-2),n_(c-1))$ will cancle out when not at the start of the sum, the sum only produces a single non zero run at its start, as long as the inner most upper bound is not negative, if $r>=c$ the inner sum is guarnted to run at least once
 $
 
-   D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[0^(n_(c-1)) binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+  #[the inner sum only runs once if upper bound is not negative] \
+   D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)-1)^(n_(c-2)-1)[1]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[sum_(n_(c-2)-1)^(n_(c-2)-1)[1] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+  #[for the inner most sum to run the outer sums lower bound must be at least 1, $n_(c-2) >=1$, if it is 0 it will not run] \
+  #[$1-0^(n_(c-2))$ is only 1 if $n_(c-2)!=0$ or $n_(c-2)>0$ and $n_(c-2)<0$] \
+  #[since $n_(c-2)$ starts at 0 and goes upto $n_(c-3)-1$ it can be negative or its parent sum wouldnt have run it] \
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[[1-0^(n_(c-2))] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") \
+
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[[1] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") 
+  + overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[[-0^(n_(c-2))] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") \\
+    
 $
 
 
