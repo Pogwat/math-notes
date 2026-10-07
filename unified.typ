@@ -201,7 +201,7 @@ $
     + overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[[-0^(n_(c-2))] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") \
     D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[1] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") \
     + overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-3)=0)^(n_(c-4)-1) [sum_(n_(c-2)=0)^(n_(c-3)-1)[[-0^(n_(c-2))] binom(n_(c-3),n_(c-2))]binom(n_(c-4),n_(c-3))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") \
-      #[ $-0^(n_(c-2))$ is only -1 if $n_(c-2)$ is 0, the base of the sum, $binom(n_(c-3),n_(c-2))$ is 1 at the base ]\
+      #[ $-0^(n_(c-2))$ is only -1 if $n_(c-2)$ is 0, the base of the sum, $binom(n_(c-3),n_(c-2))$ is 1 at the base ] \
       D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[1] binom(n_(c-3),n_(c-2))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums") \
       + overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-3)=0)^(n_(c-4)-1) [sum_(n_(c-3)-1)^(n_(c-3)-1)[-1]binom(n_(c-4),n_(c-3))]...binom(e,f)]binom(d,e)]binom(r,d)],c-1 "sums")  \
       \ \ \ \ \ \ \ 
@@ -211,19 +211,48 @@ $
 $
 
 $
-  "let" k= sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]...]]] \
+  "let" k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]...]]],n "sums") \
   k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...[ sum_(n_(n-1)=0)^(n_(n-2)-1)[sum_(n_(n-1)-1)^(n_(n-1)-1)[1]]...]]] \
-  #[only if the previous lower bound reaches $>=1$ will the next run] \
+$
+
+$sum_(b=0)^(a)[0^b]$ will produce 1 if $a>=0$, it will produce 0 if $a<0$
+it is a switch that is only on if the upper sum bound is $>=0$ \
+$sum_(b=0)^(a)[0^b] = a>=0 = a==0 | a>0$
+it defaults to 1 only if $a<0$ will it be 0, defualt - (1 if less than 0) = 1 - (1 if less than 0)
+
+$
+  sum_(b=0)^(a)[0^b] = 1 - cases(1 "if" a<0 ,0 "if" a==0, 0 "if" a>0  ) = cases(0 "if" a<0 ,1 "if" a==0, 1 "if" a>0  ) \
+
+  0^a = cases(1 "if" a==0, 0 "or undefined" "if" a<0,0 "if" a>0) \
+  0^(a+1) = cases(1 "if" a==(-1), 0  "or undefined" "if" a<(-1),0 "if" a>(-1)) \
+  #[$1-0^(a+1)$ will only be zero if $a = -1$, it is also the inverts $0^(a+1)$ as it defualts to 1 and is only 0 when $0^(a+1)==1$] \
+  1-0^(a+1) = cases(0 "if" a==(-1), 1  "or undefined" "if" a<(-1),1 "if" a>(-1)) =  cases(0 "if" a==(-1), 1  "or undefined" "if" a<(-1),1 "if" a==(0),1 "if" a>(0)) \
+  #[2 of the 4 cases match $cases(0 "if" a<0 ,1 "if" a==0, 1 "if" a>0  )$, the 1st case is paritally matched (only for $a==-1$ not for $a<(-1)$)  ] \
+  forall a "such that" a==-1 | a>0 | a==0 : sum_(b=0)^(a)[0^b] = 1-0^(a+1)
+  
+$
+  
+$
+  forall a "such that" a==0 | a>1 | a==1 : sum_(b=0)^(a-1)[0^b] = 1-0^(a) \
   sum_(b=0)^(a-1)[0^b] = overbrace(1 - 0^a,"deafults to 1, only if a is 0 will this drop out")\
   #[the sum will not run if $a=0$, $0-1=-1$, $sum_(b=0)^(-1)=0$] \ \ \
   #[apply the identity to the $0^n$ sums] \
+  #[if the upper bound of a inner sum drops negative the sum will not run and the incosistency will never be reached] \
   k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...[ sum_(n_(n-1)=0)^(n_(n-2)-1)[1-0^(n_(n-1))]]...]] \
   k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...[ sum_(n_(n-1)=0)^(n_(n-2)-1)[-0^(n_(n-1))]+sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]...]] \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-2)=0)^(n_(n-3)-1)[[ sum_(n_(n-1)=0)^(n_(n-2)-1)[-0^(n_(n-1))]+sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
   k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-2)=0)^(n_(n-3)-1)[ -(1-0^(n_(n-2)))+  [ sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
-  #[every expansion inverts the sign of the terms] \
-   k=(-1)^(n+1)0^(n_0 -1)+(-1)^(n)+sum_(n_1 =0)^(n_0 -1)[(-1)^(n-1)+sum_(n_2 =0)^(n_1-1)[(-1)^(n-2)+sum_(n_3=0)^(n_2-1)...(-1)^3+sum_(n_(n-3)=0)^(n_(n-4)-1)[(-1)^2+sum_(n_(n-2)=0)^(n_(n-3)-1)[ (-1)^1 + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]]]...]] \
+  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ -1]+ sum_(n_(n-2)=0)^(n_(n-3)-1)[ 0^(n_(n-2))] + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
+  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ -1]+ ( 1-0^(n_(n-3)) ) + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
   
+  #[every expansion inverts the sign of the terms and adds a term to a lower sum level] \
+   k=sum_(n_1 =0)^(n_0 -1)[(-1)^(n-1)+ 0^(n_1)(-1)^n+sum_(n_2 =0)^(n_1-1)[(-1)^(n-2)+sum_(n_3=0)^(n_2-1)...(-1)^3+sum_(n_(n-3)=0)^(n_(n-4)-1)[(-1)^2+sum_(n_(n-2)=0)^(n_(n-3)-1)[ (-1)^1 + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]]]...]] \
+
+   k=(-1)^(n+1)0^(n_0)+(-1)^(n)
+   +sum_(n_1 =0)^(n_0 -1)[(-1)^(n-1)]+sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[(-1)^(n-2)]] \ 
+   + sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[(-1)^3]]]
+   +... sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(n-3)=0)^(n_(n-4)-1)[(-1)^2]]]]+ \ 
+   sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ (-1)^1 ]]]]]
+  +    overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]]]]], n-1 "sums") \ 
 $
 
 
