@@ -210,11 +210,6 @@ $
     
 $
 
-$
-  "let" k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]...]]],n "sums") \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...[ sum_(n_(n-1)=0)^(n_(n-2)-1)[sum_(n_(n-1)-1)^(n_(n-1)-1)[1]]...]]] \
-$
-
 $sum_(b=0)^(a)[0^b]$ will produce 1 if $a>=0$, it will produce 0 if $a<0$
 it is a switch that is only on if the upper sum bound is $>=0$ \
 $sum_(b=0)^(a)[0^b] = a>=0 = a==0 | a>0$
@@ -228,32 +223,31 @@ $
   #[$1-0^(a+1)$ will only be zero if $a = -1$, it is also the inverts $0^(a+1)$ as it defualts to 1 and is only 0 when $0^(a+1)==1$] \
   1-0^(a+1) = cases(0 "if" a==(-1), 1  "or undefined" "if" a<(-1),1 "if" a>(-1)) =  cases(0 "if" a==(-1), 1  "or undefined" "if" a<(-1),1 "if" a==(0),1 "if" a>(0)) \
   #[2 of the 4 cases match $cases(0 "if" a<0 ,1 "if" a==0, 1 "if" a>0  )$, the 1st case is paritally matched (only for $a==-1$ not for $a<(-1)$)  ] \
-  forall a "such that" a==-1 | a>0 | a==0 : sum_(b=0)^(a)[0^b] = 1-0^(a+1)
-  
+  forall a "such that" a==-1 | a>0 | a==0 : sum_(b=0)^(a)[0^b] = 1-0^(a+1) \
+  forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b] = 1-0^(a)
 $
   
 $
-  forall a "such that" a==0 | a>1 | a==1 : sum_(b=0)^(a-1)[0^b] = 1-0^(a) \
-  sum_(b=0)^(a-1)[0^b] = overbrace(1 - 0^a,"deafults to 1, only if a is 0 will this drop out")\
-  #[the sum will not run if $a=0$, $0-1=-1$, $sum_(b=0)^(-1)=0$] \ \ \
-  #[apply the identity to the $0^n$ sums] \
-  #[if the upper bound of a inner sum drops negative the sum will not run and the incosistency will never be reached] \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...[ sum_(n_(n-1)=0)^(n_(n-2)-1)[1-0^(n_(n-1))]]...]] \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...[ sum_(n_(n-1)=0)^(n_(n-2)-1)[-0^(n_(n-1))]+sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]...]] \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-2)=0)^(n_(n-3)-1)[ -(1-0^(n_(n-2)))+  [ sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ -1]+ sum_(n_(n-2)=0)^(n_(n-3)-1)[ 0^(n_(n-2))] + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
-  k=sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ -1]+ ( 1-0^(n_(n-3)) ) + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]]...]] \
-  
-  #[every expansion inverts the sign of the terms and adds a term to a lower sum level] \
-   k=sum_(n_1 =0)^(n_0 -1)[(-1)^(n-1)+ 0^(n_1)(-1)^n+sum_(n_2 =0)^(n_1-1)[(-1)^(n-2)+sum_(n_3=0)^(n_2-1)...(-1)^3+sum_(n_(n-3)=0)^(n_(n-4)-1)[(-1)^2+sum_(n_(n-2)=0)^(n_(n-3)-1)[ (-1)^1 + [ sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]]]...]] \
+  "let" k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]...]]],n "sums") \
+$
 
-   k=(-1)^(n+1)0^(n_0)+(-1)^(n)
-   +sum_(n_1 =0)^(n_0 -1)[(-1)^(n-1)]+sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[(-1)^(n-2)]] \ 
-   + sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[(-1)^3]]]
-   +... sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(n-3)=0)^(n_(n-4)-1)[(-1)^2]]]]+ \ 
-   sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ (-1)^1 ]]]]]
-  +    overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(n-3)=0)^(n_(n-4)-1)[sum_(n_(n-2)=0)^(n_(n-3)-1)[ sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]]]]], n-1 "sums") \ 
+$forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b] = 1-0^(a)$, the lower bounds at every sum layer in k have a lower bound of 0, since the upper bound of the ext sum is the incrementer-1 and since this incrementer never drops below 0 the identity could be applied to every layer of k. since the identity produces 0^a terms inside a nested sum those terms can have the identity recursivley applied to themselves.The final sum cant be brough out as n_0 is not guranted to to be $>=0$
+
 $
+  k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_(n-2)=0)^(n_(n-3)-1)[sum_(n_(n-1)=0)^(n_(n-2)-1)[sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]]]...]]],n "sums") \
+  k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_(n-2)=0)^(n_(n-3)-1)[sum_(n_(n-1)=0)^(n_(n-2)-1)[1-0^(n_(n-1))]]...]]],n-1 "sums") \
+  k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_(n-2)=0)^(n_(n-3)-1)[-(1-0^(n_(n-2)))+sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]...]]],n-1 "sums") \
+  #[every expansions inverts the sign of the identity] \
+  1-0^(a) = (-1)^0+(-1)^(1) 0^a \
+  k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_(n-2)=0)^(n_(n-3)-1)[(-1)^1((-1)^0(-1)^(1)0^(n_(n-2)))+sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]...]]],n-1 "sums") \
+  #[LHS and RHS are repeatedly multipled by $(-1)^(1)$, RHS starts with a degree higher (-1) coefficent] \
+  k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_(n-2)=0)^(n_(n-3)-1)[(-1)^1+sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^0]]...]]],n-1 "sums") \
+  k= overbrace(sum_(n_1 =0)^(n_0 -1)[(-1)^(n-(0))+0^(n-(0+1))+sum_(n_2 =0)^(n_1-1)[(-1)^(n-(1))+sum_(n_3=0)^(n_2-1)[(-1)^(n-(2))+... sum_(n_(n-2)=0)^(n_(n-3)-1)[(-1)^(n-(n-1))+sum_(n_(n-1)=0)^(n_(n-2)-1)[(-1)^(n-n)]]...]]],n-1 "sums") \
+    
+    
+    
+$
+
 
 
 
