@@ -258,6 +258,21 @@ $
   forall n_0 in ZZ, n_0>=0 => k=sum_(b=0)^(n-1)[(-1)^(n-(b+1))binom(n_0,b)]+(-1)^n 0^(n_0)
 $
 
+$
+  D_(r,c) = overbrace(sum_(d=0)^(r-1)[sum_(e=0)^(d-1)[sum_(f=0)^(e-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[0^(n_(c-1)) binom(n_(c-2),n_(c-1))]...binom(e,f)]binom(d,e)]binom(r,d)],c "sums") \
+  binom(a,0)=1 \
+  #[only when $b=0$ does $0^b = 1$, so all other $binom(a,b)$ besides the base $binom(a,0)$, vanish] \
+  forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b binom(a,b)] =(1-0^a)binom(a,0) = 1-0^a \
+  #[this sum is identitcal to k besides each lower layer of a sum of 1 has binom coefficents] \
+  #[let $n_0=r$] \
+  D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_c=0)^(n_(c-1)-1)[0^(n_(c)) binom(n_(c-1),n_c)]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
+  D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[sum_(n_c=0)^(n_(c-1)-1)[0^(n_(c)) binom(n_(c-1),n_c)]binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
+  D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[(1-0^(n_(c-1)))binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-1 "sums") \
+  D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[(-1)^(c-c)binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-1 "sums") 
+  + \  overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[(-1)^(c-(c-1))binom(n_(c-3),n_(c-2))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-2 "sums") \
+  + ... + overbrace(sum_(n_1=0)^(n_0-1)[((-1)^(c-2)+(-1)^(c-2+1)0^(n_1))binom(n_0,n_1)],1 "sums") \
+$
+
 
 
 
