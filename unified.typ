@@ -251,7 +251,11 @@ $
   forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b] = 1-0^(a) \
   forall n_0 in ZZ, n_0>=0 => \ 
   k= (-1)^(n-(n))overbrace(binom(n_0,n-1),n-1 "sums") + (-1)^(n-(n-1))overbrace(binom(n_0,n-2),n-2 "sums") + ... + (-1)^(n-(2))overbrace(binom(n_0,1),1 "sums") + (-1)^(n-(1))underbrace(overbrace(binom(n_0,0),0 "sums"),1) + (-1)^(n)0^(n_0) \
-  forall n_0 in ZZ, n_0>=0 => k=sum_(b=0)^(n-1)[(-1)^(b)binom(n_0,n-(b+1))]+(-1)^n 0^(n_0)
+  forall n_0 in ZZ, n_0>=0 => k=sum_(b=0)^(n-1)[(-1)^(b)binom(n_0,n-(b+1))]+(-1)^n 0^(n_0) \
+$
+
+$
+  forall n_0 in ZZ, n_0>=0 => k=sum_(b=0)^(n-1)[(-1)^(n-(b+1))binom(n_0,b)]+(-1)^n 0^(n_0)
 $
 
 
