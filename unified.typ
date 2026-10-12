@@ -246,17 +246,12 @@ $
   k=(-1)^(n-(n))overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[...sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]],n-1 "sums")  + (-1)^(n-(n-1))overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[...sum_(n_(n-2)=0)^(n_(n-3)-1)[1]]],n-2 "sums") + ... + (-1)^(n-(2))overbrace(sum_(n_1=0)^(n_0-1)[(1+(-1)^(1)0^(n_(1)))],1 "sums") \
   k=(-1)^(n-(n))overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[...sum_(n_(n-1)=0)^(n_(n-2)-1)[1]]],n-1 "sums")  + (-1)^(n-(n-1))overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[...sum_(n_(n-2)=0)^(n_(n-3)-1)[1]]],n-2 "sums") + ... + (-1)^(n-(2))overbrace(sum_(n_1=0)^(n_0-1)[1],1 "sums") + (-1)^(n-(2)+1)overbrace(sum_(n_1=0)^(n_0-1)[0^(n_(1)))],1 "sums") \
   k=(-1)^(n-(n))overbrace(binom(n_0,n-1),n-1 "sums") + (-1)^(n-(n-1))overbrace(binom(n_0,n-2),n-2 "sums") + ... + (-1)^(n-(2))overbrace(binom(n_0,1),1 "sums") + (-1)^(n-(2)+1)overbrace(sum_(n_1=0)^(n_0-1)[0^(n_(1))],1 "sums") \
-  
- 
-  
-
-
-  sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[0^(n_3)]]]=\
-  sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[1-0^(n_2)]]= \ 
-  sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[1]]-sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[0^(n_2)]]= \ 
-  sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[1]]-sum_(n_1 =0)^(n_0 -1)[1-0^(n_1)]= \ 
-  sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[1]]-sum_(n_1 =0)^(n_0 -1)[1] -sum_(n_1 =0)^(n_0 -1)[-0^(n_1)]= \ 
-  sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[1]]-sum_(n_1 =0)^(n_0 -1)[1] +(1-0^(n_0)) \ 
+  k=(-1)^(n-(n))overbrace(binom(n_0,n-1),n-1 "sums") + (-1)^(n-(n-1))overbrace(binom(n_0,n-2),n-2 "sums") + ... + (-1)^(n-(2))overbrace(binom(n_0,1),1 "sums") + (-1)^(n-(2)+1)sum_(n_0-1)^(n_0-1)[underbrace(overbrace(binom(n_0,0),0 "sums"),1)-0^(n_0)] \
+  k=(-1)^(n-(n))overbrace(binom(n_0,n-1),n-1 "sums") + (-1)^(n-(n-1))overbrace(binom(n_0,n-2),n-2 "sums") + ... + (-1)^(n-(2))overbrace(binom(n_0,1),1 "sums") + (-1)^(n-(1))sum_(n_0-1)^(n_0-1)[underbrace(overbrace(binom(n_0,0),0 "sums"),1)] + (-1)^(n)sum_(n_0-1)^(n_0-1)[0^(n_0)] \
+  forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b] = 1-0^(a) \
+  forall n_0 in ZZ, n_0>=0 => \ 
+  k= (-1)^(n-(n))overbrace(binom(n_0,n-1),n-1 "sums") + (-1)^(n-(n-1))overbrace(binom(n_0,n-2),n-2 "sums") + ... + (-1)^(n-(2))overbrace(binom(n_0,1),1 "sums") + (-1)^(n-(1))underbrace(overbrace(binom(n_0,0),0 "sums"),1) + (-1)^(n)0^(n_0) \
+  forall n_0 in ZZ, n_0>=0 => k=sum_(b=0)^(n-1)[(-1)^(b)binom(n_0,n-(b+1))]+(-1)^n 0^(n_0)
 $
 
 
