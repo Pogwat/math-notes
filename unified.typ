@@ -290,6 +290,19 @@ $
   l = (-1)sum_(b=0)^(a-1)[binom(a,b)] + 3^a-2^a = (-1)(2^a-1) + 3^a-2^a
 $
 
+$
+  (a+b)^r = sum_(s=0)^(r) [ binom(r,s) a^s b^(r-s) ] \
+  "let" b = 1 \
+  (a+1)^r = sum_(s=0)^(r) [ binom(r,s) a^s (1) ] \
+  "let" a = c+1 \
+  (a+1)^r = sum_(s=0)^(r) [ binom(r,s) (c+1)^s (1) ] = sum_(s=0)^(r) [ binom(r,s) sum_(s'=0)^(s) [ binom(s,s') (c)^s']] \
+$
+
+  this strucutre is almost identical to the diffrences strucutre, the upper bound is the only diffrence, for this to converge to $0^(s''''^...)$ the max upper bound must decrease by -1 at each layer, if it does the base of the power term will reach 0.
+
+  if we factor out the last term of each sum the upper bounds decrease by 1 and $+binom(r,r) a^r b^(r-r)$ are produced, this factorization created the recursion for $x^r$ at the start of this document which then produced the $D_(r,c)$ factorization and then the recursive sum of $0^r$ 
+ 
+
 
 
 
