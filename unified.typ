@@ -231,7 +231,7 @@ $
   "let" k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]...]]],n "sums") \
 $
 
-$forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b] = 1-0^(a)$, the lower bounds at every sum layer in k have a lower bound of 0, since the upper bound of the ext sum is the incrementer-1 and since this incrementer never drops below 0 the identity could be applied to every layer of k. since the identity produces 0^a terms inside a nested sum those terms can have the identity recursivley applied to themselves.The final sum cant be brough out as n_0 is not guranted to to be $>=0$
+$forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b] = 1-0^(a)$, the lower bounds at every sum layer in k have a lower bound of 0, since the upper bound of the next sum is the incrementer-1 and since this incrementer never drops below 0 the identity could be applied to every layer of k. since the identity produces 0^a terms inside a nested sum those terms can have the identity recursivley applied to themselves.The final sum cant be brough out as n_0 is not guranted to to be $>=0$
 
 $
   k= overbrace(sum_(n_1 =0)^(n_0 -1)[sum_(n_2 =0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[... sum_(n_(n-2)=0)^(n_(n-3)-1)[sum_(n_(n-1)=0)^(n_(n-2)-1)[sum_(n_n=0)^(n_(n-1)-1)[0^n_(n)]]]...]]],n "sums") \
@@ -263,7 +263,7 @@ $
   binom(a,0)=1 \
   #[only when $b=0$ does $0^b = 1$, so all other $binom(a,b)$ besides the base $binom(a,0)$, vanish] \
   forall a in ZZ, a>=0 => sum_(b=0)^(a-1)[0^b binom(a,b)] =(1-0^a)binom(a,0) = 1-0^a \
-  #[this sum is identitcal to k besides each lower layer of a sum of 1 has binom coefficents] \
+  #[this sum is identitcal to k besides each layer of a sum of 1 has binom coefficents] \
   #[let $n_0=r$] \
   D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_c=0)^(n_(c-1)-1)[0^(n_(c)) binom(n_(c-1),n_c)]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
   D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[sum_(n_c=0)^(n_(c-1)-1)[0^(n_(c)) binom(n_(c-1),n_c)]binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
@@ -271,6 +271,23 @@ $
   D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[(-1)^(c-c)binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-1 "sums") 
   + \  overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[(-1)^(c-(c-1))binom(n_(c-3),n_(c-2))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-2 "sums") \
   + ... + overbrace(sum_(n_1=0)^(n_0-1)[((-1)^(c-2)+(-1)^(c-2+1)0^(n_1))binom(n_0,n_1)],1 "sums") \
+  D_(r,c) = (-1)^(c-c)overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-1 "sums") 
+  + \  (-1)^(c-(c-1))overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-2)=0)^(n_(c-3)-1)[binom(n_(c-3),n_(c-2))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c-2 "sums") \
+  + ... + (-1)^(c-2)overbrace(sum_(n_1=0)^(n_0-1)[binom(n_0,n_1)],1 "sums") + (-1)^(c-1)overbrace(sum_(n_1=0)^(n_0-1)[0^(n_1)binom(n_0,n_1)],1 "sums") \
+$
+
+$
+  "binomial therom:" (x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ] \
+  #[if both $x$ and $a$ $=1$ then only the sum of binomial terms will remain as $1^n$ = 1] \
+  (1+1)^r = sum_(b=0)^(r) [ binom(r,b) (1) (1) ] \
+  2^r = sum_(b=0)^(r) [binom(r,b)] \
+  2^r = sum_(b=0)^(r-1) [binom(r,b)] + overbrace(binom(r,r),1) \
+  2^r -1 = sum_(b=0)^(r-1) [binom(r,b)] \
+  "let" l =sum_(b=0)^(a-1)[binom(a,b)sum_(c=0)^(b-1)[binom(b,c)]] = sum_(b=0)^(a-1)[binom(a,b)(2^b -1)] = sum_(b=0)^(a-1)[binom(a,b)(-1) + binom(a,b)(2^b)] = (-1)sum_(b=0)^(a-1)[binom(a,b)] + sum_(b=0)^(a-1)[binom(a,b)(2^b)] \
+  "let" a' =1, "let" x'=2 \
+  (1+2)^r = 3^r = sum_(b=0)^(r) [ binom(r,b) 2^b (1) ] \
+  3^r - 1(2^r) = sum_(b=0)^(r-1) [ binom(r,b) 2^b (1) ] \
+  l = (-1)sum_(b=0)^(a-1)[binom(a,b)] + 3^a-2^a = (-1)2^a + 3^a-2^a
 $
 
 
