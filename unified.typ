@@ -308,7 +308,10 @@ $
    ((x-1)+1)^r =x^r= sum_(b=0)^(r) [ binom(r,b)  sum_(c=0)^(b) [ binom(b,c)(x-2)^c]] \
   #[if x=3 the sum collapses to a double sum of binomials, if x=2 the sum collapses to a double sum of 0^c]  \
   #[every expansion increase the number of sums by 1  and decreases the value of the inner x' by 1] \
-    ((x-1)+1)^r =x^r= overbrace(sum_(b=0)^(r) [ binom(r,b)  sum_(c=0)^(b) [ binom(b,c)]...sum_(n_c=0)^(n_(c-1)) [ binom(n_(c-1),n_c) (x-c)^(n_c)]], c "sums")
+    ((x-1)+1)^r =x^r= overbrace(sum_(b=0)^(r) [ binom(r,b)  sum_(c=0)^(b) [ binom(b,c)]...sum_(n_c=0)^(n_(c-1)) [ binom(n_(c-1),n_c) (x-c)^(n_c)]], c "sums") \
+  #[we can pull out the last term in each sum to get falling sums] \
+  x^r= overbrace(sum_(b=0)^(r-1) [ binom(r,b)(  sum_(c=0)^(b-1) [ binom(b,c)(...sum_(n_c=0)^(n_(c-1)) [ binom(n_(c-1),n_c) (x-c)^(n_c)]+ underbrace(binom(n_(c-1),n_(c-1)),1)(x-c)^(n_(c-1))]...)+ underbrace(binom(b,b),1)(x-2)^b)], c "sums") + underbrace(binom(r,r),1)(x-1)^r \
+  x^r= overbrace(sum_(b=0)^(r-1) [ binom(r,b)(  sum_(c=0)^(b-1) [ binom(b,c)(...sum_(n_c=0)^(n_(c-1)) [ binom(n_(c-1),n_c) (x-c)^(n_c)]+ (x-c)^(n_(c-1))]...)+ (x-2)^b)], c "sums") + (x-1)^r \
    
   $
 
