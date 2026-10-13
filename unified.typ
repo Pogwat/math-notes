@@ -298,9 +298,20 @@ $
   (a+1)^r = sum_(s=0)^(r) [ binom(r,s) (c+1)^s (1) ] = sum_(s=0)^(r) [ binom(r,s) sum_(s'=0)^(s) [ binom(s,s') (c)^s']] \
 $
 
-  this strucutre is almost identical to the diffrences strucutre, the upper bound is the only diffrence, for this to converge to $0^(s''''^...)$ the max upper bound must decrease by -1 at each layer, if it does the base of the power term will reach 0.
+  this strucutre is almost identical to the diffrences strucutre, the upper bound is the only diffrence, for this to converge to $0^(s''''^...)$ the max upper bound must decrease by -1 at each layer, if it does the base of the power term will reach 0. facotr out last sum term to get falling upper bounds.
 
-  if we factor out the last term of each sum the upper bounds decrease by 1 and $+binom(r,r) a^r b^(r-r)$ are produced, this factorization created the recursion for $x^r$ at the start of this document which then produced the $D_(r,c)$ factorization and then the recursive sum of $0^r$ 
+  $
+   ((x-1)+1)^r =x^r= sum_(b=0)^(r) [ binom(r,b) (x-1)^b (1) ] \
+   #[if x=2 the sum collapses to sum of binomials, if x=1 the sum collapse to a sum of $0^b$] \
+   #[apply the identity to each x, here x' = x-1] \
+   ((x-1)+1)^r =x^r= sum_(b=0)^(r) [ binom(r,b) (((x-2)+1)^b (1) ] \
+   ((x-1)+1)^r =x^r= sum_(b=0)^(r) [ binom(r,b)  sum_(c=0)^(b) [ binom(b,c)(x-2)^c]] \
+  #[if x=3 the sum collapses to a double sum of binomials, if x=2 the sum collapses to a double sum of 0^c]  \
+  #[every expansion increase the number of sums by 1  and decreases the value of the inner x' by 1] \
+    ((x-1)+1)^r =x^r= overbrace(sum_(b=0)^(r) [ binom(r,b)  sum_(c=0)^(b) [ binom(b,c)]...sum_(n_c=0)^(n_(c-1)) [ binom(n_(c-1),n_c) (x-c)^(n_c)]], c "sums")
+   
+  $
+
  
 
 
