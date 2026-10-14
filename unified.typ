@@ -316,9 +316,19 @@ $
   x^r= overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_c=0)^(n_(c-1)-1) [ binom(n_(c-1),n_c) (x-c)^(n_c)]]...], c "sums") 
   \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-c)^(n_(c-1))] ]...], c-1 "sums") + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-(c-1))^(n_(c-2))] ]...], c-2 "sums") \ 
   \ +...+ overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-2)^b], 1 "sums") +(x-1)^r \
-  
-  
-  
+  #[i can use a (x-1)^r to absorb the lower sums except 1, let the lower power only be expanded c-1 times ] \
+
+  (x-1)^r = underbrace(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-(c-1))^(n_(c-1))]]...], c-1 "sums"),"dosent overlap with" x^r) 
+  \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-(c-1))^(n_(c-2))] ]...], c-2 "sums") + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-3)=0)^(n_(c-4)-1) [ binom(n_(c-4),n_(c-3)) (x-(c-2))^(n_(c-3))] ]...], c-3 "sums") \ 
+  \ +...+ overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-2)^b], 1 "sums") +(x-1)^r \
+
+
+  $
+
+  $
+    x^r-(x-1)^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_c=0)^(n_(c-1)-1) [ binom(n_(c-1),n_c) (x-c)^(n_c)]]...], c "sums") 
+    \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-c)^(n_(c-1))] ]...], c-1 "sums") + cancel(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-(c-1))^(n_(c-2))] ]...], c-2 "sums")) \ 
+    \ +...+ cancel(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-2)^b], 1 "sums")) +cancel((x-1)^r) -underbrace(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-(c-1))^(n_(c-1))]]...], c-1 "sums"),"dosent overlap with" x^r)  \
   $
 
  
