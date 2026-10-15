@@ -337,8 +337,19 @@ $
     (1+1)^r = sum_(b=0)^(r)[binom(r,b)] \
     (1+1)^r = sum_(b=0)^(r-1)[binom(r,b)] - binom(r,r) \
     (2)^r-1 = sum_(b=0)^(r-1)[binom(r,b)] \
-    sum_(b=0)^(r-1)[binom(r,b)sum_(c=0)^(b-1)[binom(b,c)]] = sum_(b=0)^(r-1)[binom(r,b)(2)^b-1]
-    
+    sum_(b=0)^(r-1)[binom(r,b)sum_(c=0)^(b-1)[binom(b,c)]] = sum_(b=0)^(r-1)[binom(r,b)((2)^b-1)] = sum_(b=0)^(r-1)[binom(r,b)(-1)] + sum_(b=0)^(r-1)[binom(r,b)((2)^b)] \
+    (2+1)^r -binom(r,r)2^r = sum _(b=0)^(r-1)[binom(r,b)2^b] \
+    #[coefficent match, subtract last term, split sum, repeat] \
+    "let" x = sum_(b=0)^(a-1)[binom(a,b)sum_(c=0)^(b-1)[binom(b,c)m'^c]] \
+    #[coefficent match and subtract creating 2 terms] \
+    (m'+1)^b - binom(b,b)m'^(b) = sum_(c=0)^(b-1)[binom(b,c)m'^c] = (m'+1)^b - m'^(b) = sum_(c=0)^(b-1)[binom(b,c)m'^c]
+    x = sum_(b=0)^(a-1)[binom(a,b)((m'+1)^b - m'^(b))] \
+    #[split the 2 terms] \
+    x = sum_(b=0)^(a-1)[binom(a,b)(-m'^(b))] +  sum_(b=0)^(a-1)[binom(a,b)((m'+1)^b)] \
+    #[repeat this process for the 2 new sums] \
+    sum_(b=0)^(a-1)[binom(a,b)(-m'^(b))] = ((-m')+1)^a - (-m')^a \
+    sum_(b=0)^(a-1)[binom(a,b)((m'+1)^b)] = ((m'+1)+1)^a - (m'+1)^a \
+    x = ((-m')+1)^a - (-m')^a + ((m'+1)+1)^a - (m'+1)^a
   $
   
 
