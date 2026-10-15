@@ -316,20 +316,32 @@ $
   x^r= overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_c=0)^(n_(c-1)-1) [ binom(n_(c-1),n_c) (x-c)^(n_c)]]...], c "sums") 
   \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-c)^(n_(c-1))] ]...], c-1 "sums") + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-(c-1))^(n_(c-2))] ]...], c-2 "sums") \ 
   \ +...+ overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-2)^b], 1 "sums") +(x-1)^r \
-  #[i can use a (x-1)^r to absorb the lower sums except 1, let the lower power only be expanded c-1 times ] \
+  #[i can use a (x-1)^r to absorb lower sums ] \
 
-  (x-1)^r = underbrace(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-(c-1))^(n_(c-1))]]...], c-1 "sums"),"dosent overlap with" x^r) 
-  \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-(c-1))^(n_(c-2))] ]...], c-2 "sums") + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-3)=0)^(n_(c-4)-1) [ binom(n_(c-4),n_(c-3)) (x-(c-2))^(n_(c-3))] ]...], c-3 "sums") \ 
-  \ +...+ overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-2)^b], 1 "sums") +(x-1)^r \
-
-
-  $
+  (x-1)^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) ((x-1)-(c-1))^(n_(c-1))]]...], c-1 "sums")
+  \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) ((x-1)-(c-1))^(n_(c-2))] ]...], c-2 "sums") + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-3)=0)^(n_(c-4)-1) [ binom(n_(c-4),n_(c-3)) ((x-1)-(c-2))^(n_(c-3))] ]...], c-3 "sums") \ 
+  \ +...+ overbrace(sum_(b=0)^(r-1) [ binom(r,b)  ((x-1)-2)^b], 1 "sums") +((x-1)-1)^r \
 
   $
-    x^r-(x-1)^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_c=0)^(n_(c-1)-1) [ binom(n_(c-1),n_c) (x-c)^(n_c)]]...], c "sums") 
-    \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-c)^(n_(c-1))] ]...], c-1 "sums") + cancel(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-(c-1))^(n_(c-2))] ]...], c-2 "sums")) \ 
-    \ +...+ cancel(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-2)^b], 1 "sums")) +cancel((x-1)^r) -underbrace(overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-(c-1))^(n_(c-1))]]...], c-1 "sums"),"dosent overlap with" x^r)  \
+
   $
+    (x-1)^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-1)=0)^(n_(c-2)-1) [ binom(n_(c-2),n_(c-1)) (x-c)^(n_(c-1))]]...], c-1 "sums")
+  \ + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-2)=0)^(n_(c-3)-1) [ binom(n_(c-3),n_(c-2)) (x-c)^(n_(c-2))] ]...], c-2 "sums") + overbrace(sum_(b=0)^(r-1) [ binom(r,b)  sum_(c=0)^(b-1) [ binom(b,c)...sum_(n_(c-3)=0)^(n_(c-4)-1) [ binom(n_(c-4),n_(c-3)) (x-(c-1))^(n_(c-3))] ]...], c-3 "sums") \ 
+  \ +...+ overbrace(sum_(b=0)^(r-1) [ binom(r,b)  (x-3)^b], 1 "sums") +(x-2)^r \
+  #[subtracting these would result in ony 1 overlaping term (c-1 sums) being removed and it would add more terms to the tail, \ only the highest sums term would be removed, \ this will work but it requires accumulating the overlap from the previous powers subtracted]
+$
+  if we could simplify the lower sums into closed form binomial-power terms we can subtract them. if x=c the c nested sums matches $D_(r,c)$ and the lower sums can be factored as a sum of 1 with binom coeffcients at lower sum layers. 
+
+  $
+    "let" m= overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_(c-1)=0)^(n_(c-2)-1)[sum_(n_c=0)^(n_(c-1)-1)[1 binom(n_(c-1),n_c)]binom(n_(c-2),n_(c-1))]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
+    (1+1)^r = sum_(b=0)^(r)[binom(r,b)] \
+    (1+1)^r = sum_(b=0)^(r-1)[binom(r,b)] - binom(r,r) \
+    (2)^r-1 = sum_(b=0)^(r-1)[binom(r,b)] \
+    sum_(b=0)^(r-1)[binom(r,b)sum_(c=0)^(b-1)[binom(b,c)]] = sum_(b=0)^(r-1)[binom(r,b)(2)^b-1]
+    
+  $
+  
+
 
  
 
