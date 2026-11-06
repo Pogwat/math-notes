@@ -351,7 +351,108 @@ $
     sum_(b=0)^(a-1)[binom(a,b)((m'+1)^b)] = ((m'+1)+1)^a - (m'+1)^a \
     x = ((-m')+1)^a - (-m')^a + ((m'+1)+1)^a - (m'+1)^a
   $
-  
+
+  $
+    "goal:" overbrace(sum_(b=0)^(a)binom(a,b)sum_(c=0)^(b)binom(b,c) sum_(d=0)^(c)binom(c,d)...sum_(n_m=0)^(n_(m-1)) binom(n_(m-1),n_m),m "sums") \
+    (x+a)^r= sum_(b=0)^(r)[binom(r,b)x^b a^(r-b)] \
+    "rename:" a->m, r->a \
+    (x+m)^r= sum_(b=0)^(a)[binom(a,b)x^b m^(a-b)]
+    "let" m=1 \
+    (x+1)^r= sum_(b=0)^(a)[binom(a,b)x^b] \
+    "the sums at higher depths have the same structure as this" \
+    "if that inner  x^b = (x+1)^b it would recurse into another sum like the identity states" \
+    ((x+1)+1)^r= sum_(b=0)^(a)[binom(a,b)(x+1)^b] = sum_(b=0)^(a)[binom(a,b)sum_(c=0)^(b)[binom(b,c)x^b]] \
+    "every +1 can be stripped away by the binomial therom into a sum" \
+    m=overbrace(1+1+1+1+1+...+1,m "1's") \
+    (x+m)^a = overbrace(sum_(b=0)^(a)binom(a,b)sum_(c=0)^(b)binom(b,c) sum_(d=0)^(c)binom(c,d)...sum_(n_m=0)^(n_(m-1))[ binom(n_(m-1),n_m) x^(n_m)],m "sums") \
+    "the goal has been achived, i can even control the inermost power too" \
+    "a neat symetrey beacuse of the commutitive property of addition:" \
+    (x+m)^a = (m+x)^a 
+    =overbrace(sum_(b=0)^(a)binom(a,b)sum_(c=0)^(b)binom(b,c) sum_(d=0)^(c)binom(c,d)...sum_(n_m=0)^(n_(m-1))[ binom(n_(m-1),n_m) x^(n_m)],m "sums")
+    =overbrace(sum_(b=0)^(a)binom(a,b)sum_(c=0)^(b)binom(b,c) sum_(d=0)^(c)binom(c,d)...sum_(n_x=0)^(n_(x-1))[ binom(n_(x-1),n_x) m^(n_x)],x "sums")
+
+  $
+
+  $
+    #[let $n_0=r$] \
+    D_(r,c) = overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_c=0)^(n_(c-1)-1)[0^(n_(c)) binom(n_(c-1),n_c)]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
+    "goal:" overbrace(sum_(n_1=0)^(n_0-1)[sum_(n_2=0)^(n_1-1)[sum_(n_3=0)^(n_2-1)[...sum_(n_c=0)^(n_(c-1)-1)[0^(n_(c)) binom(n_(c-1),n_c)]...binom(n_2,n_3)]binom(n_1,n_2)]binom(n_0,n_1)],c "sums") \
+   "the identity we dervied gets use very close already" \
+    (0+c)^a = overbrace(sum_(b=0)^(a)binom(a,b)sum_(c=0)^(b)binom(b,c) sum_(d=0)^(c)binom(c,d)...sum_(n_c=0)^(n_(c-1))[ binom(n_(c-1),n_c) 0^(n_c)],c "sums") \ 
+    "remeber from our origional derivation:" \
+    ((x+1)+1)^r= sum_(b=0)^(a)[binom(a,b)(x+1)^b] = sum_(b=0)^(a)[binom(a,b)sum_(c=0)^(b)[binom(b,c)x^b]] \
+    "every +1 can be stripped away by the binomial therom into a sum" \ \
+
+    "using the +1 stripping rule" \
+    "the sum can be decomposed into sums of (0+d)^(n_d) where d is depth and n_d is the incrementer at that depth  " \
+    (0+c)^a = overbrace(overbrace(sum_(b=0)^(a)binom(a,b)overbrace(sum_(c=0)^(b)binom(b,c) overbrace(sum_(d=0)^(c)binom(c,d)...overbrace(sum_(n_c=0)^(n_(c-1))[ binom(n_(c-1),n_c) 0^(n_c)],(0+c-c)^(n_c)),(0+(c-2)^c')),(0+(c-1))^b),(0+c)^a),c "sums") \
+    "just attach the trailing sums to these terms and you can strip the last term from each sum" \
+  $
+  $
+    (0+c)^a = overbrace(overbrace(sum_(b=0)^(a-1)binom(a,b)overbrace(sum_(c=0)^(b-1)binom(b,c) overbrace(sum_(d=0)^(c-1)binom(c,d)...overbrace(sum_(n_c=0)^(n_(c-1)-1)[ binom(n_(c-1),n_c) 0^(n_c)],(0+c-c)^(n_c)),(0+(c-2)^c')),(0+(c-1))^b),(0+c)^a),c "sums, (D_(r,c))") \
+    + overbrace(sum_(b=a)^(a)binom(a,b)overbrace((0+(c-1))^b,(0+(c-1))^b),(0+c)^a) \
+
+    + overbrace(sum_(b=0)^(a-1)binom(a,b)overbrace(sum_(c=b)^(b)binom(b,c) overbrace((0+(c-2)^c'),(0+(c-2)^c')),(0+(c-1))^b),(0+c)^a) \
+    +...+ \
+    + overbrace(overbrace(sum_(b=0)^(a-1)binom(a,b)overbrace(sum_(c=0)^(b-1)binom(b,c) overbrace(sum_(d=0)^(c-1)binom(c,d)...overbrace(sum_(n_c=n_(c-1))^(n_(c-1))[ binom(n_(c-1),n_c) 0^(n_c)],(0+c-c)^(n_c)),(0+(c-2)^c')),(0+(c-1))^b),(0+c)^a),c "sums") \ 
+  $
+
+  $
+    "now if we move these end terms to the otherside of the equation we have another formula for D_(r,c)"  \
+    D_(r,c) = (0+c)^a \ 
+    - overbrace(sum_(b=a)^(a)binom(a,b)overbrace((0+(c-1))^b,(0+(c-1))^b),(0+c)^a) \
+    - overbrace(sum_(b=0)^(a-1)binom(a,b)overbrace(sum_(c=b)^(b)binom(b,c) overbrace((0+(c-2)^c'),(0+(c-2)^c')),(0+(c-1))^b),(0+c)^a) \
+    -...- \
+    - overbrace(overbrace(sum_(b=0)^(a-1)binom(a,b)overbrace(sum_(c=0)^(b-1)binom(b,c) overbrace(sum_(d=0)^(c-1)binom(c,d)...overbrace(sum_(n_c=n_(c-1))^(n_(c-1))[ binom(n_(c-1),n_c) 0^(n_c)],(0+c-c)^(n_c)),(0+(c-2)^c')),(0+(c-1))^b),(0+c)^a),c "sums") \  
+     
+  $
+
+  $
+    "lets clean this up" \
+    "first lets remove the overbrace" \
+    D_(r,c) = (0+c)^a \ 
+    - sum_(b=a)^(a)binom(a,b)(0+(c-1))^b \
+    - sum_(b=0)^(a-1)binom(a,b)sum_(c=b)^(b)binom(b,c)(0+(c-2)^c') \
+    -...- \
+    - sum_(b=0)^(a-1)binom(a,b)sum_(c=0)^(b-1)binom(b,c)sum_(d=0)^(c-1)binom(c,d)...sum_(n_c=n_(c-1))^(n_(c-1))[ binom(n_(c-1),n_c) 0^(n_c)] \  
+    "second lets evaluate the innermost sums" \
+    D_(r,c) = (0+c)^a \ 
+    - binom(a,a)(0+(c-1))^a \
+    - sum_(b=0)^(a-1)binom(a,b)binom(b,b)(0+(c-2)^b) \
+    -...- \
+    - sum_(b=0)^(a-1)binom(a,b)sum_(c=0)^(b-1)binom(b,c)sum_(d=0)^(c-1)binom(c,d)...[ binom(n_(c-1),n_(c-1)) 0^(n_(c-1))] \  
+    "thrid lets remove the 0's" \
+    D_(r,c) = (c)^a \ 
+    - binom(a,a)(c-1)^a \
+    - sum_(b=0)^(a-1)binom(a,b)binom(b,b)(c-2)^b \
+    -...- \
+    - sum_(b=0)^(a-1)binom(a,b)sum_(c=0)^(b-1)binom(b,c)sum_(d=0)^(c-1)binom(c,d)...[ binom(n_(c-1),n_(c-1)) 0^(n_(c-1))] \  
+    "fourth lets remove the binom(a,a)'s" \
+    D_(r,c) = (c)^a \ 
+    - (c-1)^a \
+    - sum_(b=0)^(a-1)binom(a,b)(c-2)^b \
+    -...- \
+    - sum_(b=0)^(a-1)binom(a,b)sum_(c=0)^(b-1)binom(b,c)sum_(d=0)^(c-1)binom(c,d)...[ 0^(n_(c-1))] \  
+  $
+
+  $
+    D_(r,c) = (c)^a \ 
+    - (c-1)^a \
+    - sum_(b=0)^(a-1)binom(a,b)(c-2)^b \
+    -...- \
+    - overbrace(sum_(b=0)^(a-1)binom(a,b)sum_(c=0)^(b-1)binom(b,c)sum_(d=0)^(c-1)binom(c,d)...sum_(n_(c-1)=0)^(n_(c-2)-1)[ binom(n_(c-2),n_(c-1))0^(n_(c-1))],c-1 "sums") \  
+    "notice the last term is just a nested sum of 0^(last_incrementer) with binom terms at each layer" \
+    "we can apply the 0 sum formula of D_(r,c) to get that term into closed form" \
+    "in this case it would simplify to D_(r,c-1) (a=r)"
+    "rename r->a and apply the substition" \
+    D_(a,c) = (c)^a \ 
+    - (c-1)^a \
+    - sum_(b=0)^(a-1)binom(a,b)(c-2)^b \
+    -...- overbrace(sum_(b=0)^(a-1)binom(a,b)sum_(c'=0)^(b-1)binom(b,c')...sum_(n_c-2=0)^(n_(c-3)-1)binom(n_(c-3),n_(c-2))(c-3)^b, c-2 "sums") \
+    - overbrace(D_(a,c-1),c-1 "sums") \
+    "if we apply this formula to itself we get a staircase like structure" \
+    "by this i mean each expansion removes the last term and adds 1 term to each lower term, like a stairscase" \
+  $
 
 
  
