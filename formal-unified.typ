@@ -97,7 +97,7 @@ Since we can freely choose a only the restriction on r remains
 "I have a theory, all $x^n$'s can be written as a sum of nested sums with falling upper bounds "
 
 all $x^r$'s can be written as a sum of nested sums with falling upper bounds $"for all" r in ZZ^(+)$
-also x must have a divisor $d "in" RR$ so a interger number of sums can be used 
+also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it has this divisor it can be written a nested sum with l sums 
   
   
 
