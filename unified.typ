@@ -448,11 +448,69 @@ $
     D_(a,c) = (c)^a \ 
     - (c-1)^a \
     - sum_(b=0)^(a-1)binom(a,b)(c-2)^b \
-    -...- overbrace(sum_(b=0)^(a-1)binom(a,b)sum_(c'=0)^(b-1)binom(b,c')...sum_(n_c-2=0)^(n_(c-3)-1)binom(n_(c-3),n_(c-2))(c-3)^b, c-2 "sums") \
+    -...- overbrace(sum_(b=0)^(a-1)binom(a,b)sum_(c'=0)^(b-1)binom(b,c')...sum_(n_c-2=0)^(n_(c-3)-1)binom(n_(c-3),n_(c-2))(c-(c-1))^b, c-2 "sums") \
     - overbrace(D_(a,c-1),c-1 "sums") \
     "if we apply this formula to itself we get a staircase like structure" \
     "by this i mean each expansion removes the last term and adds 1 term to each lower term, like a stairscase" \
   $
+
+  
+  
+  #set page(flipped: true, margin: 1cm)
+  #set align(center + horizon)
+  #show table.cell.where(y: 0): set text(weight: "bold")
+  
+  = Staircase Grid Table of D(4,c)
+  
+  #table(
+    columns: (1fr, 1.2fr, 1.8fr, 2.5fr, 3fr),
+    inset: 10pt,
+    stroke: 0.5pt + luma(150),
+    fill: (col, row) => if row == 0 { rgb("e3f2fd") } else if row == col + 1 { rgb("fff3e0") } else { none },
+    align: center + horizon,
+    
+    // Header Row
+    [$D(4,0)$], [$D(4,1)$], [$D(4,2)$], [$D(4,3)$], [$D(4,4)$],
+    
+    // Row 1: Base Powers
+    [$0^4$], [$1^4$], [$2^4 - 1^4$], [$3^4 - 2^4$], [$4^4 - 3^4$],
+    
+    // Row 2: First Subtraction Layer
+    [], [$- D(4,0)$], [$- sum_(b=0)^(3) binom(4,b)0^b$], [$- sum_(b=0)^(3) binom(4,b)1^b$], [$- sum_(b=0)^(3) binom(4,b)2^b$],
+    
+    // Row 3: Second Subtraction Layer
+    [], [], [$- D(4,1)$], [$- sum_(b=0)^(3) binom(4,b)sum_(c'=0)^(b-1) binom(b,c')0^(c')$], [$- sum_(b=0)^(3) binom(4,b)sum_(c'=0)^(b-1) binom(b,c')1^(c')$],
+    
+    // Row 4: Third Subtraction Layer
+    [], [], [], [$- D(4,2)$], [$- sum_(b=0)^(3) binom(4,b)sum_(c'=0)^(b-1) binom(b,c')sum_(d=0)^(c'-1) binom(c',d)0^d$],
+    
+    // Row 5: Final Tail Layer
+    [], [], [], [], [$- D(4,3)$]
+  )
+
+  $
+    D_(a,c) = (c)^a \ 
+    - (c-1)^a \
+    - sum_(b=0)^(a-1)binom(a,b)(c-2)^b \
+    -...- overbrace(sum_(b=0)^(a-1)binom(a,b)sum_(c'=0)^(b-1)binom(b,c')...sum_(n_c-2=0)^(n_(c-3)-1)binom(n_(c-3),n_(c-2))(c-(c-1))^b, c-2 "sums") \
+    - overbrace(D_(a,c-1),c-1 "sums") \
+    "if we peel the sums using the (x+m)^a identity we would have to peel the result and so on"\ 
+    "resulting in a about c dimenisional expansions" \
+    "this is unfesiable" \ 
+  $
+
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
  
