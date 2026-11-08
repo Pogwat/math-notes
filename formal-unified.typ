@@ -1,3 +1,4 @@
+
 #set align(center)
 
 $((x-1)+1)^2 = (x-1)^2+2(x-1) +1$ \
@@ -98,6 +99,10 @@ Since we can freely choose a only the restriction on r remains
 
 all $x^r$'s can be written as a sum of nested sums with falling upper bounds $"for all" r in ZZ^(+)$
 also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it has this divisor it can be written a nested sum with l sums 
+
+I will extend this paper by attempting to calculte the scalars on the sums (the $d_n$ numbers): 
+
+$x^n = d_1 sum_(b=0)^(x-1)1 + d_2 sum_(b=0)^(x-1)sum_(c=0)^(b-1)1  + ... + d_n overbrace(sum_(b=0)^(x-1)sum_(c=0)^(b-1)...sum_(n_n=0)^(n_(n-1)-1)1, n "sums")  $
   
   
 
