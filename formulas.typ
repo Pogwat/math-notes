@@ -1,4 +1,4 @@
-#import "global.typ": publish-formula, quote-published
+
 binomial therom \
 $(x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ] $ \
 pascals identity \
@@ -27,12 +27,15 @@ $binom(a,n) = binom(a-1,n) + binom(a-1,n-1)$ \
     x^r = sum_(b=0)^(r) [ binom(r,b) sum_(c=0)^(b) [ binom(b,c) ((x-a)-a)^c a^(b-c) ]  a^(r-b) ] \
 
     x^r = overbrace(sum_(b=0)^(r) [ binom(r,b) sum_(c=0)^(b) [ binom(b,c) sum_(d=0)^(c) [ binom(c,d)... [sum_(n_(x/a)=0)^(n_((x/a) -1 )) [ binom(n_((x/a) -1 ),n_(x/a)) 0^(n_(x/a)) a^(n_((x/a)-1) - n_(x/a) ) ]] a^(c-d ) ]  a^(b-c) ]  a^(r-b) ], x/a "sums") \
-
-    "you can stop at any layer you want, you dont need to fully expand" \
-     #publish-formula("non-falling-sums-btherom")[ 
-       $ x^r = overbrace(sum_(b=0)^(r) [ binom(r,b) sum_(c=0)^(b) [ binom(b,c) sum_(d=0)^(c) [ binom(c,d)... [sum_(n_l=0)^(n_(l -1 )) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1) - n_l ) ]] a^(c-d ) ]  a^(b-c) ]  a^(r-b) ], l "sums") $ 
-     ] \
   $
+  
+    you can stop at any layer you want, you dont need to fully expand 
+   
+    #let flat_sums_btherom = $
+        x^r = overbrace(sum_(b=0)^(r) [ binom(r,b) sum_(c=0)^(b) [ binom(b,c) sum_(d=0)^(c) [ binom(c,d)... [sum_(n_l=0)^(n_(l -1 )) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1) - n_l ) ]] a^(c-d ) ]  a^(b-c) ]  a^(r-b) ], l "sums") \ 
+     
+  $
+  #flat_sums_btherom
 === falling sums
 $ 
   (x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ] \
@@ -62,8 +65,7 @@ $
 $
 
 the sum can be factored into a sum of falling sums
-#publish-formula("falling-sums-btherom")[ 
-$ 
+#let falling_sums_btherom = $
   x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] ] ...  a^(b-c) ]] a^(r-b) ] , l "sums")  \
   + 
     overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_(l-1)=0)^(n_(l-2)-1) [(x-l a)^(n_(l-1)) ]  ] ...  a^(b-c) ] ] a^(r-b) ] , l-1 "sums")  \
@@ -72,4 +74,4 @@ $
   +
     overbrace((x-a)^r, 0 "sums")  \
 $
-]
+#falling_sums_btherom
