@@ -88,7 +88,7 @@ also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it ha
 ]
 #falling_sums_btherom
 
-== Falling sums (x,r upper bound)
+== Falling sums (l,r upper bound)
 $
   (x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ]
   (x+a)^r = sum_(b=0)^(r-1) [ binom(r,b) x^b a^(r-b) ] + binom(r,r) x^r a^(0)
@@ -123,6 +123,18 @@ $ binom(r,r) = 1 "for all" r in ZZ^(+)$
 x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l a)^r \
 $
 #falling_sum_lr_btherom
+
+== falling sums, free upper bounds
+if we just keep exapnding the new outer term derived from the falling l,r formula with the falling l,r formula we get more nested sums
+$
+"for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
+x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l a)^r \
+
+x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] +sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) ((x-l a)-(b+1)a)^c a^(r-c)]] + ((x-l a)-l a)^r \ 
+
+x^r = sum_(d=0)^(m-1)[ sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) ((x-d l a)-(b+1)a)^c a^(r-c)]]] + ((x-m l a)^r \ 
+
+$
 
 
 
