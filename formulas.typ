@@ -205,6 +205,44 @@ x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0
 $
 #n_falling_sums_freedom_btherom
 
+== binomial recurssion
+
+=== hockey stick
+
+pascals identity:
+$binom(a,n) = binom(a-1,n)+ binom(a-1,n-1) $ 
+
+pasclas identity can be applied to its own terms
+
+i will apply the idenitty to its left hand terms
+$
+  binom(a,n) = binom(a-1,n)+ binom(a-1,n-1)  \
+  binom(a,n) = [binom(a-2,n)+ binom(a-2,n-1)]+ binom(a-1,n-1) \
+  binom(a,n) = [[...[binom(a-a,n)+ binom(a-a,n-1)]...+ binom(a-3,n-1)]+ binom(a-2,n-1)]+ binom(a-1,n-1) \
+  binom(a,n) = sum_(b=0)^(a-1)[binom(b,n-1)] + binom(0,n)
+$ 
+
+=== hockey stick recurssion
+
+the hockey stick identity can also be applied to its own terms o get a nested sum with falling uper bounds
+
+ $
+   binom(a,n) = sum_(b=0)^(a-1)[binom(b,n-1)] + binom(0,n) \
+    binom(a,n) = sum_(b=0)^(a-1)[   
+      sum_(c=0)^(b-1)[binom(c,n-2)
+      ] + binom(0,n-1) ] + binom(0,n) \
+
+    binom(a,n) = sum_(b=0)^(a-1)[   
+      sum_(c=0)^(b-1)[...sum_(n_n=0)^(n_(n-1)-1)[binom(n_n,n-n)] + binom(0,n-n) ...] + binom(0,n-1) ] + binom(0,n) \
+ $ 
+
+ 
+
+
+
+
+
+
 
 
 

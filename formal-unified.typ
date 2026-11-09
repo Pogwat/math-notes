@@ -24,7 +24,9 @@ according to formulas.typ's #link("formulas.pdf#falling_sums")[falling_sum secti
 I will extend this paper by attempting to calculate the scalars on the sums (the $d_n$ numbers): 
 
 $x^n = d_1 sum_(b=0)^(x-1)1 + d_2 sum_(b=0)^(x-1)sum_(c=0)^(b-1)1  + ... + d_n overbrace(sum_(b=0)^(x-1)sum_(c=0)^(b-1)...sum_(n_n=0)^(n_(n-1)-1)1, n "sums")  $
-  
+
+the binomial therom states x^r is the sum of lower degrees 
+$((x-a)+a)^r = x^r= sum_(b=0)^(r)[binom(r,b)(x-a)^b a^(r-b)]$
   
 
 
