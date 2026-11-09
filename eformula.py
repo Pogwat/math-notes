@@ -34,9 +34,13 @@ def extract_let_bindings(content):
             started = True
             body_chars.append(char)
 
+            # Handle math blocks ($) toggling
             if char == "$":
+                # Check for escaped dollar signs (\$)
                 if idx > start_index and content[idx - 1] != "\\":
                     in_math = not in_math
+
+            # CRITICAL FIX: Only track structural brackets when NOT inside a math block ($...$)
             elif not in_math:
                 if char in "=[{(":
                     if char == "=" and len(stack) == 0 and len(body_chars) == 1:
@@ -53,6 +57,7 @@ def extract_let_bindings(content):
                         ):
                             stack.pop()
 
+            # End assignment safely when structural stack clears and math is fully closed
             if not in_math and len(stack) == 0:
                 if char in "\n;]" or (
                     idx + 1 < len(content) and content[idx + 1] in "\n;#"
@@ -79,7 +84,6 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
     found_any = False
 
     for file_path in input_files:
-        # Ignore our own output files to prevent infinite loops / self-scanning
         if file_path == output_filename or file_path == output_filename.replace(
             ".typ", ".pdf"
         ):
@@ -112,7 +116,6 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
                 )
 
     if not found_any:
-        # FIX: Soft failure instead of breaking the Git hook
         print(
             "Notice: No formulas found to extract in the targeted files.",
             file=sys.stderr,
@@ -132,7 +135,7 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
         )
         print(f"Compiled: '{output_filename.replace('.typ', '.pdf')}'")
 
-        # SAFEKEEPING: Automatically stage the generated outputs so git commit stays green
+        # Automatically stage the generated outputs so git commit stays clean
         subprocess.run(["git", "add", output_filename], capture_output=True)
         subprocess.run(
             ["git", "add", output_filename.replace(".typ", ".pdf")],
@@ -154,7 +157,6 @@ def main():
     parser = argparse.ArgumentParser(
         description="Extract and inline Typst formulas from source files into a single master document."
     )
-    # Changed nargs to '*' so it won't crash when Git hooks run it without arguments
     parser.add_argument(
         "files",
         metavar="FILE",
@@ -172,7 +174,6 @@ def main():
 
     args = parser.parse_args()
 
-    # FALLBACK: If no explicit files are provided (like in your pre-commit hook), scan current directory
     target_files = args.files
     if not target_files:
         target_files = glob.glob("*.typ")
