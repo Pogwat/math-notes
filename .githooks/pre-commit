@@ -1,0 +1,9 @@
+#!/bin/sh
+
+nix-shell -p python3 --run "python3 eformula.py $(ls *.typ)"
+
+# 2. CRITICAL STEP: Re-stage the modified file so the append is included in this commit
+git add all_formula.typ all_formula.pdf
+
+# 3. Exit successfully to let the commit proceed
+exit 0
