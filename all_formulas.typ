@@ -32,35 +32,8 @@ Display: #falling_sum_lr_btherom
 #v(1em)
 === Variable: `n_falling_sums_freedom_btherom`
 #let n_falling_sums_freedom_btherom = $
-x^r = 
-sum_(b_n=0)^(n_n - 1) [ ...
-sum_(b_4=0)^(n_4 - 1) [ 
-sum_(b_3=0)^(n_3 - 1) [ 
-sum_(b_2=0)^(n_2 - 1) [ 
-sum_(b_1=0)^(n_1 - 1) [ 
-sum_(b_0=0)^(r - 1) [   
-\ 
-  binom(r, b_0) 
-  (
-  ( 
-  (
-  
-  (
-  ...(x-b_n n_(n-1) ...n_3 n_2 n_1 n_0 )...
-  - b_4 n_3 n_2 n_1 n_0
-  )
-   
-  - b_3 n_2 n_1 n_0) 
-  - b_2 n_1 n_0) 
-  - (b_1 + 1) n_0)^(b_0) n_0^(r - b_0) 
-\
-] 
-] 
-] 
-] 
-]
-]
-+ (x - n_n ...n_4 n_3 n_2 n_1 n_0)^r
+"for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
+x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[(((x+b_n n_n...n_1n_0)+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]] + ((x+n_n...n_2n_1n_0)^r \
 $
 Display: #n_falling_sums_freedom_btherom
 #v(1em)
