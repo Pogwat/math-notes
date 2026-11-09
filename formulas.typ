@@ -108,5 +108,5 @@ $
   binom(r,r)^(l-1) a^(0)^(l-1) sum_(b=0)^(r-1) [ binom(r,b) (x-l a)^b a^(r-b) ] \
   + 
   binom(r,r)^(l)  a^(0)^(l) , l "sums" ) \
-  x^r = sum_(b=0)^(l) [ binom(r,r)^(b) a^(0)^(b) sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + binom(r,r)^(l)  a^(0)^(l)
+  x^r = sum_(b=0)^(l-1) [ binom(r,r)^(b) a^(0)^(b) sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + binom(r,r)^(l)  a^(0)^(l)
 $
