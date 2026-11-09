@@ -38,3 +38,17 @@ x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0
 $
 Display: #n_falling_sums_freedom_btherom
 #v(1em)
+=== Variable: `binom_hockey`
+#let binom_hockey = $
+    binom(a,n) = sum_(b=0)^(a-1)[binom(b,n-1)] + binom(0,n)
+$
+Display: #binom_hockey
+#v(1em)
+=== Variable: `binom_hockey_recurssion`
+#let binom_hockey_recurssion = $
+   "for all" n in ZZ_>=0 \
+   binom(a,n) = overbrace(sum_(b=0)^(a-1)[   
+     sum_(c=0)^(b-1)[...sum_(n_n=0)^(n_(n-1)-1)[1] ...] ],n "sums") + binom(0,n) \
+ $
+Display: #binom_hockey_recurssion
+#v(1em)

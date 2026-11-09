@@ -221,6 +221,12 @@ $
   binom(a,n) = [[...[binom(a-a,n)+ binom(a-a,n-1)]...+ binom(a-3,n-1)]+ binom(a-2,n-1)]+ binom(a-1,n-1) \
   binom(a,n) = sum_(b=0)^(a-1)[binom(b,n-1)] + binom(0,n)
 $ 
+the hockey stick identity:
+#let binom_hockey =$
+    binom(a,n) = sum_(b=0)^(a-1)[binom(b,n-1)] + binom(0,n)
+$
+binom_hockey
+
 
 === hockey stick recurssion
 
@@ -233,8 +239,30 @@ the hockey stick identity can also be applied to its own terms o get a nested su
       ] + binom(0,n-1) ] + binom(0,n) \
 
     binom(a,n) = sum_(b=0)^(a-1)[   
-      sum_(c=0)^(b-1)[...sum_(n_n=0)^(n_(n-1)-1)[binom(n_n,n-n)] + binom(0,n-n) ...] + binom(0,n-1) ] + binom(0,n) \
+      sum_(c=0)^(b-1)[...sum_(n_n=0)^(n_(n-1)-1)[binom(n_n,n-n)] + binom(0,n-(n-1)) ...] + binom(0,n-1) ] + binom(0,n) \
  $ 
+ if we restrict n the sum simplifies
+
+ this simplifes the $binom(0,n-d)$ at each layer
+ $
+   "for all" n in ZZ_(>=0) \
+   binom(0,n) = cases(1 "if" n=0, 0 "if" n!=0)
+ $
+this simplifes the innermost $binom(n_n,0)$
+ $
+   "for all" a in RR \
+   binom(a,0)=1
+ $
+
+ when $n!=0$ the inner $binom(0,n-d)$ simplifies to 0, when n=0, the inner sums are never reached and $binom(a,0)=binom(0,0)$
+ hockey stick recurssion identity:
+ #let binom_hockey_recurssion = $
+   "for all" n in ZZ_>=0 \
+   binom(a,n) = overbrace(sum_(b=0)^(a-1)[   
+     sum_(c=0)^(b-1)[...sum_(n_n=0)^(n_(n-1)-1)[1] ...] ],n "sums") + binom(0,n) \
+ $
+#binom_hockey_recurssion
+
 
  
 
