@@ -23,3 +23,7 @@ Display: #flat_sums_btherom
 ]
 Display: #falling_sums_btherom
 #v(1em)
+=== Variable: `falling_sum_lr_btherom`
+#let falling_sum_lr_btherom = $
+Display: #falling_sum_lr_btherom
+#v(1em)
