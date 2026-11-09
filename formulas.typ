@@ -74,7 +74,7 @@ Since we can freely choose a only the restriction on r remains
 
 all $x^r$'s can be written as a sum of nested sums with falling upper bounds $"for all" r in ZZ^(+)$
 also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it has this divisor it can be written a nested sum with l sums 
-#let falling_sums_btheromss = [
+#let falling_sums_btherom = [
   $"for all" a in RR | r in ZZ^(+) | d "in" RR "where" (x/d = l, l in ZZ^(+) ) => $
   $x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] ] ...  a^(b-c) ]] a^(r-b) ] , l "sums")  \
   + 
