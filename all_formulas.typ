@@ -9,8 +9,8 @@ This file contains all formulas physically extracted from source documents.
   $
 Display: #flat_sums_btherom
 #v(1em)
-=== Variable: `falling_sums_btheromss`
-#let falling_sums_btheromss = [
+=== Variable: `falling_sums_btherom`
+#let falling_sums_btherom = [
   $"for all" a in RR | r in ZZ^(+) | d "in" RR "where" (x/d = l, l in ZZ^(+) ) => $
   $x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] ] ...  a^(b-c) ]] a^(r-b) ] , l "sums")  \
   + 
@@ -21,5 +21,5 @@ Display: #flat_sums_btherom
     overbrace((x-a)^r, 0 "sums")  \
   $
 ]
-Display: #falling_sums_btheromss
+Display: #falling_sums_btherom
 #v(1em)
