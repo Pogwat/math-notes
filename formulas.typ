@@ -99,4 +99,14 @@ $
   ((x-a)+a)^r = x^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) (x-a)^r a^(0) \
   x^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) [sum_(b=0)^(r-1) [ binom(r,b) ((x-a)-a)^b a^(r-b) ] + binom(r,r) ((x-a)-a)^r a^(0)] a^(0) \
   x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) [sum_(b=0)^(r-1) [ binom(r,b) ((x-a)-a)^b a^(r-b) ] + binom(r,r) \ ...[sum_(b=0)^(r-1) [ binom(r,b) (x-l a)^b a^(r-b) ] + binom(r,r) (x-l a)^r a^(0)] ... a^(0)] a^(0), l "sums")  
+  x^r = overbrace( sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] \
+  + 
+  binom(r,r) a^(0) sum_(b=0)^(r-1) [ binom(r,b) (x-2a)^b a^(r-b) ] \
+  + 
+  binom(r,r)^2 a^(0)^2 sum_(b=0)^(r-1) [ binom(r,b) (x-3a)^b a^(r-b) ]  \
+  + ... + 
+  binom(r,r)^(l-1) a^(0)^(l-1) sum_(b=0)^(r-1) [ binom(r,b) (x-l a)^b a^(r-b) ] \
+  + 
+  binom(r,r)^(l)  a^(0)^(l) , l "sums" ) \
+  x^r = sum_(b=0)^(l) [ binom(r,r)^(b) a^(0)^(b) sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + binom(r,r)^(l)  a^(0)^(l)
 $
