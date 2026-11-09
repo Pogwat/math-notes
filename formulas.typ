@@ -90,10 +90,10 @@ also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it ha
 
 == Falling sums (l,r upper bound)
 $
-  (x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ]
-  (x+a)^r = sum_(b=0)^(r-1) [ binom(r,b) x^b a^(r-b) ] + binom(r,r) x^r a^(0)
-  "let" x' = x-a , "let" a' = a
-  ((x-a)+a)^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) (x-a)^r a^(0)
+  (x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ] \
+  (x+a)^r = sum_(b=0)^(r-1) [ binom(r,b) x^b a^(r-b) ] + binom(r,r) x^r a^(0) \
+  "let" x' = x-a , "let" a' = a \
+  ((x-a)+a)^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) (x-a)^r a^(0) \
 $ 
 the previous falling sums resulted from expanding the inner (x-a)^b, if we expand the outer (x-a)^r we get a diffrent falling sum
 $
@@ -188,7 +188,7 @@ factoring out the -1 we get:
   
 #let n_falling_sums_freedom_btherom = $
 "for all" r in ZZ^(+) | n_0 in R| n_0 !=0 | n_1...n_n in ZZ^(+)  \
-x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[binom(r,b_0)(((x+b_n n_n...n_1n_0)+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]] + ((x+n_n...n_2n_1n_0)^r \
+x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[binom(r,b_0)(((x+b_n n_n...n_1n_0)+...+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]] + ((x+n_n...n_2n_1n_0)^r \
 $
 #n_falling_sums_freedom_btherom
 
