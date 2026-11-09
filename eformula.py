@@ -36,11 +36,11 @@ def extract_let_bindings(content):
 
             # Handle math blocks ($) toggling
             if char == "$":
-                # Check for escaped dollar signs (\$)
-                if idx > start_index and content[idx - 1] != "\\":
+                # FIXED: Changed idx > start_index to idx > 0 to perfectly handle tight '=$' syntax
+                if idx > 0 and content[idx - 1] != "\\":
                     in_math = not in_math
 
-            # CRITICAL FIX: Only track structural brackets when NOT inside a math block ($...$)
+            # Only track structural brackets when NOT inside a math block ($...$)
             elif not in_math:
                 if char in "=[{(":
                     if char == "=" and len(stack) == 0 and len(body_chars) == 1:
@@ -57,7 +57,7 @@ def extract_let_bindings(content):
                         ):
                             stack.pop()
 
-            # End assignment safely when structural stack clears and math is fully closed
+            # We must NOT terminate if we are currently inside a math block
             if not in_math and len(stack) == 0:
                 if char in "\n;]" or (
                     idx + 1 < len(content) and content[idx + 1] in "\n;#"

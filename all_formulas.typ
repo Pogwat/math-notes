@@ -25,5 +25,8 @@ Display: #falling_sums_btherom
 #v(1em)
 === Variable: `falling_sum_lr_btherom`
 #let falling_sum_lr_btherom = $
+"for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
+x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l a)^r \
+$
 Display: #falling_sum_lr_btherom
 #v(1em)
