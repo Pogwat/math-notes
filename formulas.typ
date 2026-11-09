@@ -176,17 +176,19 @@ $
 
 this can be cleaned up if we avoid $((x-a)+a)^r = x^r$ substituion
   $
-  (x+a)^r = sum_(b_0=0)^(r-1)[x^(b_0) a^(r-b_0)]+x^r \
-  x^r = -sum_(b_0=0)^(r-1)[x^(b_0) a^(r-b_0)] + (x+a)^r \
-  x^r = -sum_(b_0=0)^(r-1)[x^(b_0) a^(r-b_0)] +[ -sum_(b_0=0)^(r-1)[(x+a)^(b_0) a^(r-b_0)] + ((x+a)+a)^r] \ 
-  x^r = sum_(b_1=0)^(n_1-1)[ -sum_(b_0=0)^(r-1)[(x+b_1a)^(b_0) a^(r-b_0)]] + ((x+n_1a)^r \ 
-  x^r = sum_(b_1=0)^(n_1-1)[ -sum_(b_0=0)^(r-1)[(x+b_1n_0)^(b_0) n_0^(r-b_0)]] + ((x+n_1n_0)^r \ 
+    (x+a)^r = sum_(b_0=0)^(r-1)[binom(r,b_0)x^(b_0) a^(r-b_0)]+binom(r,r)a^0x^r \
+  x^r = -sum_(b_0=0)^(r-1)[binom(r,b_0)x^(b_0) a^(r-b_0)] + (x+a)^r \
+  x^r = -sum_(b_0=0)^(r-1)[binom(r,b_0)x^(b_0) a^(r-b_0)] +[ -sum_(b_0=0)^(r-1)[(x+a)^(b_0) a^(r-b_0)] + ((x+a)+a)^r] \ 
+  x^r = sum_(b_1=0)^(n_1-1)[ -sum_(b_0=0)^(r-1)[binom(r,b_0)(x+b_1a)^(b_0) a^(r-b_0)]] + ((x+n_1a)^r \ 
+  x^r = sum_(b_1=0)^(n_1-1)[ -sum_(b_0=0)^(r-1)[binom(r,b_0)(x+b_1n_0)^(b_0) n_0^(r-b_0)]] + ((x+n_1n_0)^r \ 
   $
+the restrictions we have are from $binom(r,r) (n_0)^0$ being applied to each new varible.
 factoring out the -1 we get:
+
   
 #let n_falling_sums_freedom_btherom = $
-"for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
-x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[(((x+b_n n_n...n_1n_0)+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]] + ((x+n_n...n_2n_1n_0)^r \
+"for all" r in ZZ^(+) | n_0 in R| n_0 !=0 | n_1...n_n in ZZ^(+)  \
+x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[binom(r,b_0)(((x+b_n n_n...n_1n_0)+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]] + ((x+n_n...n_2n_1n_0)^r \
 $
 #n_falling_sums_freedom_btherom
 
