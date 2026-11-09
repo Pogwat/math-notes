@@ -12,11 +12,12 @@ Display: #flat_sums_btherom
 === Variable: `falling_sums_btherom`
 #let falling_sums_btherom = [
   $"for all" a in RR | r in ZZ^(+) | d "in" RR "where" (x/d = l, l in ZZ^(+) ) => $
-  $x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] ] ...  a^(b-c) ]] a^(r-b) ] , l "sums")  \
+  $
+    x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b)a^(r-b) [sum_(c=0)^(b-1) [ binom(b,c)a^(b-c)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l))a^(n_(l-1)-n_(l)) (x-l a)^(n_l)  ] ] ...   ]]  ] , l "sums")  \
   + 
-    overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_(l-1)=0)^(n_(l-2)-1) [(x-l a)^(n_(l-1)) ]  ] ...  a^(b-c) ] ] a^(r-b) ] , l-1 "sums")  \
+    overbrace(sum_(b=0)^(r-1) [ binom(r,b)a^(r-b) [sum_(c=0)^(b-1) [ binom(b,c)  a^(b-c) ... [sum_(n_(l-1)=0)^(n_(l-2)-1) [binom(n_(l-2),n_(l-1)) a^(n_(l-2)-n_(l-1)) (x-l a)^(n_(l-1)) ]  ] ...  ] ]  ] , l-1 "sums")  \
   + ... +
-    overbrace(sum_(b=0)^(r-1) [ binom(r,b) [ (x-2a)^b] a^(r-b) ], 1 "sums")  \
+    overbrace(sum_(b=0)^(r-1) [ binom(r,b)  a^(r-b) [ (x-2a)^b] ], 1 "sums")  \
   +
     overbrace((x-a)^r, 0 "sums")  \
   $

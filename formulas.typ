@@ -48,10 +48,19 @@ the same reassoning applys here as in the last case: \
 $(x-a)^b$ is a good substitution as it the nested power term will shrink by $a$ \
 after $x/a$ expansions the inner power term will be $0$ "
 $
-  x^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) (x-a)^r a^0  \
-  (x-a)^b = sum_(c=0)^(b-1) [ binom(r,b) ((x-a)-a)^c a^(b-c) ] + binom(b,b) ((x-a)-a)^b a^0  \
-  x^r = sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b) ((x-a)-a)^c a^(b-c) ] + binom(b,b) ((x-a)-a)^b a^0] a^(r-b) ] + binom(r,r) (x-a)^r a^0  \
-  x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b) \ ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] + binom(n_(l-1),n_(l-1)) (x-l a)^(n_(l-1)) a^0] ... \ a^(b-c) ] + binom(b,b) (x-2a)^b a^0] a^(r-b) ] + binom(r,r) (x-a)^r a^0, l "sums")  \
+  x^r = sum_(b=0)^(r-1) [ binom(r,b) a^(r-b) (x-a)^b ] + binom(r,r) a^0 (x-a)^r   \
+   
+  x^r = sum_(b=0)^(r-1) [ binom(r,b) a^(r-b)  
+    sum_(c=0)^(b-1) [ binom(b,c) a^(b-c) ((x-a)-a)^c  ] + binom(b,b) a^0 ((x-a)-a)^b  
+  ] + binom(r,r) (x-a)^r a^0  \
+
+  x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) a^(r-b)  
+    sum_(c=0)^(b-1) [ binom(b,c) a^(b-c) \
+      ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) a^(n_(l-1)-n_(l)) (x-l a)^(n_l) ] + binom(n_(l-1),n_(l-1)) a^0 (x-l a)^n_(l-1) ] ...
+     \ + binom(b,b) a^0 ((x-a)-a)^b  
+  ] ],l "sums") + binom(r,r) (x-a)^r a^0  \
+
+
 $
 
 $ a^0 = 1  "for all" a in RR $
@@ -61,8 +70,11 @@ if we restrict our formula with these we can simplify it
 
 according to our restriciton $a^0=1$ and $binom(r,r) =1$
 
-$ 
-  x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] + (x-l a)^(n_(l-1))] ...  a^(b-c) ] + (x-2a)^b] a^(r-b) ] + (x-a)^r, l "sums")  \
+$
+  x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) a^(r-b)  (
+  sum_(c=0)^(b-1) [ binom(b,c) a^(b-c) (
+    ... sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) a^(n_(l-1)-n_(l)) (x-l a)^(n_l) ] + (x-l a)^(n_(l-1)) ... )
+  ] + (x-2a)^b ) ],l "sums") + (x-a)^r  \
 $
 
 the sum can be factored into a sum of falling sums
@@ -77,11 +89,12 @@ all $x^r$'s can be written as a sum of nested sums with falling upper bounds $"f
 also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it has this divisor it can be written a nested sum with l sums 
 #let falling_sums_btherom = [
   $"for all" a in RR | r in ZZ^(+) | d "in" RR "where" (x/d = l, l in ZZ^(+) ) => $
-  $x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l)) (x-l a)^(n_l) a^(n_(l-1)-n_(l)) ] ] ...  a^(b-c) ]] a^(r-b) ] , l "sums")  \
+  $
+    x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b)a^(r-b) [sum_(c=0)^(b-1) [ binom(b,c)a^(b-c)  ... [sum_(n_l=0)^(n_(l-1)-1) [ binom(n_(l-1),n_(l))a^(n_(l-1)-n_(l)) (x-l a)^(n_l)  ] ] ...   ]]  ] , l "sums")  \
   + 
-    overbrace(sum_(b=0)^(r-1) [ binom(r,b) [sum_(c=0)^(b-1) [ binom(r,b)  ... [sum_(n_(l-1)=0)^(n_(l-2)-1) [(x-l a)^(n_(l-1)) ]  ] ...  a^(b-c) ] ] a^(r-b) ] , l-1 "sums")  \
+    overbrace(sum_(b=0)^(r-1) [ binom(r,b)a^(r-b) [sum_(c=0)^(b-1) [ binom(b,c)  a^(b-c) ... [sum_(n_(l-1)=0)^(n_(l-2)-1) [binom(n_(l-2),n_(l-1)) a^(n_(l-2)-n_(l-1)) (x-l a)^(n_(l-1)) ]  ] ...  ] ]  ] , l-1 "sums")  \
   + ... +
-    overbrace(sum_(b=0)^(r-1) [ binom(r,b) [ (x-2a)^b] a^(r-b) ], 1 "sums")  \
+    overbrace(sum_(b=0)^(r-1) [ binom(r,b)  a^(r-b) [ (x-2a)^b] ], 1 "sums")  \
   +
     overbrace((x-a)^r, 0 "sums")  \
   $
