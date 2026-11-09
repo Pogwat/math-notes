@@ -132,9 +132,50 @@ x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l
 
 x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] +sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) ((x-l a)-(b+1)a)^c a^(r-c)]] + ((x-l a)-l a)^r \ 
 
-x^r = sum_(d=0)^(m-1)[ sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) ((x-d l a)-(b+1)a)^c a^(r-c)]]] + ((x-m l a)^r \ 
+x^r = sum_(d=0)^(m-1)[ sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) ((x-d l a)-(b+1)a)^c a^(r-c)]]] + (x-m l a)^r \ 
+
+
+
+x^r = sum_(b_3=0)^(n_3 - 1) [ sum_(b_2=0)^(n_2 - 1) [ sum_(b_1=0)^(n_1 - 1) [ sum_(b_0=0)^(r - 1) [ binom(r, b_0) (((x - b_3 n_2 n_1 n_0) - b_2 n_1 n_0) - (b_1 + 1) n_0)^(b_0) n_0^(r - b_0) ] ] ] ] + (x - n_3 n_2 n_1 n_0)^r \
 
 $
+
+if we expand n times
+#let n_falling_sums_freedom_btherom =$
+x^r = 
+sum_(b_n=0)^(n_n - 1) [ ...
+sum_(b_4=0)^(n_4 - 1) [ 
+sum_(b_3=0)^(n_3 - 1) [ 
+sum_(b_2=0)^(n_2 - 1) [ 
+sum_(b_1=0)^(n_1 - 1) [ 
+sum_(b_0=0)^(r - 1) [   
+\ 
+  binom(r, b_0) 
+  (
+  ( 
+  (
+  
+  (
+  ...(x-b_n n_(n-1) ...n_3 n_2 n_1 n_0 )...
+  - b_4 n_3 n_2 n_1 n_0
+  )
+   
+  - b_3 n_2 n_1 n_0) 
+  - b_2 n_1 n_0) 
+  - (b_1 + 1) n_0)^(b_0) n_0^(r - b_0) 
+\
+] 
+] 
+] 
+] 
+]
+]
++ (x - n_n ...n_4 n_3 n_2 n_1 n_0)^r
+$
+#n_falling_sums_freedom_btherom
+
+
+
 
 
 
