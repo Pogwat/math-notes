@@ -86,3 +86,17 @@ also x must have a divisor $d "in" RR$ where $(x/d = l, l in ZZ^(+) )$, if it ha
   $
 ]
 #falling_sums_btherom
+
+== Falling sums (x,r upper bound)
+$
+  (x+a)^r = sum_(b=0)^(r) [ binom(r,b) x^b a^(r-b) ]
+  (x+a)^r = sum_(b=0)^(r-1) [ binom(r,b) x^b a^(r-b) ] + binom(r,r) x^r a^(0)
+  "let" x' = x-a , "let" a' = a
+  ((x-a)+a)^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) (x-a)^r a^(0)
+$ 
+the previous falling sums resulted from expanding the inner (x-a)^b, if we expand the outer (x-a)^r we get a diffrent falling sum
+$
+  ((x-a)+a)^r = x^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) (x-a)^r a^(0) \
+  x^r = sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) [sum_(b=0)^(r-1) [ binom(r,b) ((x-a)-a)^b a^(r-b) ] + binom(r,r) ((x-a)-a)^r a^(0)] a^(0) \
+  x^r = overbrace(sum_(b=0)^(r-1) [ binom(r,b) (x-a)^b a^(r-b) ] + binom(r,r) [sum_(b=0)^(r-1) [ binom(r,b) ((x-a)-a)^b a^(r-b) ] + binom(r,r) \ ...[sum_(b=0)^(r-1) [ binom(r,b) (x-l a)^b a^(r-b) ] + binom(r,r) (x-l a)^r a^(0)] ... a^(0)] a^(0), l "sums")  
+$
