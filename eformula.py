@@ -1,4 +1,5 @@
 import argparse
+import glob
 import os
 import re
 import subprocess
@@ -6,20 +7,13 @@ import sys
 
 
 def extract_let_bindings(content):
-    """Robustly extracts #let assignments by tracking block nesting.
-
-    Returns a list of tuples: (variable_name, full_assigned_body)
-    """
-    # Find the starting positions of all "#let " declarations
-    # Variable names can include alphanumeric characters, underscores, and hyphens
+    """Robustly extracts #let assignments by tracking block nesting."""
     let_matches = list(re.finditer(r"#let\s+([a-zA-Z0-9_\-]+)\s*=", content))
     results = []
 
     for i, match in enumerate(let_matches):
         var_name = match.group(1)
         start_index = match.end()
-
-        # Determine where the scanning should stop (at the next #let or end of file)
         end_boundary = (
             let_matches[i + 1].start()
             if i + 1 < len(let_matches)
@@ -27,40 +21,30 @@ def extract_let_bindings(content):
         )
 
         body_chars = []
-        stack = []  # Tracks opening brackets '[', '{', '('
-        in_math = False  # Tracks if we are inside a '$' block
+        stack = []
+        in_math = False
         started = False
 
-        # Scan character by character to find the true structural end of the value
         idx = start_index
         while idx < end_boundary:
             char = content[idx]
-
-            # Skip initial leading whitespaces
             if not started and char.isspace():
                 idx += 1
                 continue
             started = True
-
             body_chars.append(char)
 
-            # Handle math blocks ($)
             if char == "$":
-                # Check for escaped dollar signs (\$)
                 if idx > start_index and content[idx - 1] != "\\":
                     in_math = not in_math
-
-            # Handle structural brackets when not inside raw math strings
             elif not in_math:
                 if char in "=[{(":
-                    # '=' acts as an opening assignment token if it's the very first char
                     if char == "=" and len(stack) == 0 and len(body_chars) == 1:
                         pass
                     else:
                         stack.append(char)
                 elif char in "]} )":
                     if stack:
-                        # Match structural pairings safely
                         top = stack[-1]
                         if (
                             (char == "]" and top == "[")
@@ -69,21 +53,16 @@ def extract_let_bindings(content):
                         ):
                             stack.pop()
 
-            # End assignment when stack clears, math block is closed, and we hit a newline/semicolon
             if not in_math and len(stack) == 0:
-                # If we peek ahead and find a newline, semicolon, or another structural delimiter
                 if char in "\n;]" or (
                     idx + 1 < len(content) and content[idx + 1] in "\n;#"
                 ):
                     break
-
             idx += 1
 
         body = "".join(body_chars).strip()
-        # Clean trailing semicolons if present
         if body.endswith(";"):
             body = body[:-1].strip()
-
         if body:
             results.append((var_name, body))
 
@@ -100,6 +79,12 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
     found_any = False
 
     for file_path in input_files:
+        # Ignore our own output files to prevent infinite loops / self-scanning
+        if file_path == output_filename or file_path == output_filename.replace(
+            ".typ", ".pdf"
+        ):
+            continue
+
         if not os.path.exists(file_path):
             print(
                 f"Warning: File '{file_path}' not found. Skipping...",
@@ -110,7 +95,6 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
 
-        # Use our robust block tracker instead of standard regex
         matches = extract_let_bindings(content)
 
         if matches:
@@ -128,19 +112,18 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
                 )
 
     if not found_any:
+        # FIX: Soft failure instead of breaking the Git hook
         print(
-            "Error: No formulas found matching the pattern '#let variable = ...'",
+            "Notice: No formulas found to extract in the targeted files.",
             file=sys.stderr,
         )
         return
 
-    # Write out the final physical Typst file
     with open(output_filename, "w", encoding="utf-8") as out_file:
         out_file.write("\n".join(aggregated_content))
 
     print(f"Generated: '{output_filename}'")
 
-    # Compile the output file to PDF
     try:
         subprocess.run(
             ["typst", "compile", output_filename],
@@ -148,6 +131,14 @@ def extract_and_inline_formulas(input_files, output_filename="all_formulas.typ")
             capture_output=True,
         )
         print(f"Compiled: '{output_filename.replace('.typ', '.pdf')}'")
+
+        # SAFEKEEPING: Automatically stage the generated outputs so git commit stays green
+        subprocess.run(["git", "add", output_filename], capture_output=True)
+        subprocess.run(
+            ["git", "add", output_filename.replace(".typ", ".pdf")],
+            capture_output=True,
+        )
+
     except subprocess.CalledProcessError as e:
         print(
             f"Typst compilation failed:\n{e.stderr.decode()}", file=sys.stderr
@@ -163,11 +154,12 @@ def main():
     parser = argparse.ArgumentParser(
         description="Extract and inline Typst formulas from source files into a single master document."
     )
+    # Changed nargs to '*' so it won't crash when Git hooks run it without arguments
     parser.add_argument(
         "files",
         metavar="FILE",
         type=str,
-        nargs="+",
+        nargs="*",
         help="One or more Typst (.typ) source files to scan.",
     )
     parser.add_argument(
@@ -179,7 +171,13 @@ def main():
     )
 
     args = parser.parse_args()
-    extract_and_inline_formulas(args.files, args.output)
+
+    # FALLBACK: If no explicit files are provided (like in your pre-commit hook), scan current directory
+    target_files = args.files
+    if not target_files:
+        target_files = glob.glob("*.typ")
+
+    extract_and_inline_formulas(target_files, args.output)
 
 
 if __name__ == "__main__":
