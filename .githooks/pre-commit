@@ -1,6 +1,6 @@
 #!/bin/sh
 
-git diff --cached --name-only --diff-filter=d | grep "\.typ$" | xargs -r nix-shell -p python3 --run "python3 eformula.py"
+git diff --cached --name-only --diff-filter=d | grep "\.typ$" | xargs -r -I {} nix-shell -p python3 --run "python3 eformula.py {}"
 
 # 2. CRITICAL STEP: Re-stage the modified file so the append is included in this commit
 git add all_formula.typ all_formula.pdf
