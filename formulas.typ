@@ -143,7 +143,7 @@ we can reverse the sum \
 (x-(b+1)a) is isolated from the inner sum \
 if b starts at l-1 and goes upto x-1a the sum is still identical but reversed
 
-#let falling_sum_lr_btherom_reversed =$
+#let falling_sum_lr_btherom_reversed = $
   "for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
   x^r = sum_(b=(l-1))^(x-a) [ sum_(c=0)^(r-1)[binom(r,c) (b)^c a^(r-c)]] + (x-l a)^r \
 $

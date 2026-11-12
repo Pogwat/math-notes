@@ -31,6 +31,13 @@ x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l
 $
 Display: #falling_sum_lr_btherom
 #v(1em)
+=== Variable: `falling_sum_lr_btherom_reversed`
+#let falling_sum_lr_btherom_reversed = $
+  "for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
+  x^r = sum_(b=(l-1))^(x-a) [ sum_(c=0)^(r-1)[binom(r,c) (b)^c a^(r-c)]] + (x-l a)^r \
+$
+Display: #falling_sum_lr_btherom_reversed
+#v(1em)
 === Variable: `n_falling_sums_sub_freedom_btherom`
 #let n_falling_sums_sub_freedom_btherom = $
 "for all" r in ZZ^(+) | n_0 in R| n_0 !=0 | n_1...n_n in ZZ^(+)  \
