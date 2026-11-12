@@ -137,7 +137,20 @@ x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l
 $
 #falling_sum_lr_btherom
 
-== falling sums, free upper bounds
+=== Falling sums (l,r upper bound) reversed
+
+we can reverse the sum \
+(x-(b+1)a) is isolated from the inner sum \
+if b starts at l-1 and goes upto x-1a the sum is still identical but reversed
+
+#let falling_sum_lr_btherom_reversed =$
+  "for all" a in RR | r in ZZ^(+) | l in ZZ^(+) \
+  x^r = sum_(b=(l-1))^(x-a) [ sum_(c=0)^(r-1)[binom(r,c) (b)^c a^(r-c)]] + (x-l a)^r \
+$
+#falling_sum_lr_btherom_reversed
+
+
+== falling sums, free upper bounds 
 
 === shrinking terms
 if we just keep exapnding the new outer term derived from the falling l,r formula with the falling l,r formula we get more nested sums
