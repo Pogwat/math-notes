@@ -31,12 +31,33 @@ x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l
 $
 Display: #falling_sum_lr_btherom
 #v(1em)
-=== Variable: `n_falling_sums_freedom_btherom`
-#let n_falling_sums_freedom_btherom = $
+=== Variable: `n_falling_sums_sub_freedom_btherom`
+#let n_falling_sums_sub_freedom_btherom = $
 "for all" r in ZZ^(+) | n_0 in R| n_0 !=0 | n_1...n_n in ZZ^(+)  \
-x^r = -1sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[binom(r,b_0)(((x+b_n n_n...n_1n_0)+...+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]] + ((x+n_n...n_2n_1n_0)^r \
+x^r = 
+overbrace(
+sum_(b_n=0)^(n_n - 1) [ ...
+sum_(b_2=0)^(n_2 - 1) [ 
+sum_(b_1=0)^(n_1 - 1) [ 
+sum_(b_0=0)^(r - 1) [   
+ binom(r, b_0) 
+  ( 
+    (
+      ...(x-b_n n_(n-1) ...n_2 n_1 n_0 )...
+    - b_2 n_1 n_0) 
+  - (b_1 + 1) n_0) ^(b_0) n_0^(r - b_0) 
+] ] ] ] , n "sums")
++ (x - n_n ...n_2 n_1 n_0)^r
 $
-Display: #n_falling_sums_freedom_btherom
+Display: #n_falling_sums_sub_freedom_btherom
+#v(1em)
+=== Variable: `n_falling_sums_add_freedom_btherom`
+#let n_falling_sums_add_freedom_btherom = $
+"for all" r in ZZ^(+) | n_0 in R| n_0 !=0 | n_1...n_n in ZZ^(+)  \
+
+x^r = -1 overbrace(sum_(b_n=0)^(n_n-1)[...sum_(b_2=0)^(n_2-1)[sum_(b_1=0)^(n_1-1)[ sum_(b_0=0)^(r-1)[binom(r,b_0)(((x+b_n n_n...n_1n_0)+...+b_2n_1n_0)+b_1n_0)^(b_0) n_0^(r-b_0)]]]],n "sums") + ((x+n_n...n_2n_1n_0)^r \
+$
+Display: #n_falling_sums_add_freedom_btherom
 #v(1em)
 === Variable: `binom_hockey`
 #let binom_hockey = $
