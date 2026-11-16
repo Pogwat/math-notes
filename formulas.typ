@@ -137,6 +137,37 @@ x^r = sum_(b=0)^(l-1) [ sum_(c=0)^(r-1)[binom(r,c) (x-(b+1)a)^c a^(r-c)]] + (x-l
 $
 #falling_sum_lr_btherom
 
+== Inner Falling sums (l,r upper bound)
+falling_sum_lr_btherom can have its inner most sum expanded into falling sums, the inner degree (c in $(x-(b+1)a)^c$)varies so we should expand out the sum and handle all degress seperatley. asymetric expansion
+
+#falling_sum_lr_btherom
+
+$
+  x^r = sum_(b=0)^(l-1) [ 
+    binom(r,0) (x-(b+1)a)^0 a^(r-0)
+    + 
+    binom(r,1) (x-(b+1)a)^1 a^(r-1)
+    + ... +
+    binom(r,r-1) (x-(b+1)a)^(r-1) a^(r-(r-1))
+
+  ] + (x-l a)^r \
+
+  x^r = sum_(b_0=0)^(l_0-1) [ 
+    \
+    binom(r,0) (a_0)^(r-0) (x-(b_0+1)a_0)^0 
+    + \
+    binom(r,1) (a_0)^(r-1) (x-(b_0+1)a_0)^1 
+    + ... + \
+    binom(r,r-1) (a_0)^(r-(r-1)) (x-(b_0+1)a_0)^(r-1) 
+    \
+  ] + (x-l_0 a_0)^r \
+  
+$
+
+
+
+
+
 
 == falling sums, free upper bounds 
 
