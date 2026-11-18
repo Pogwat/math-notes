@@ -36,7 +36,21 @@ by scaling x^r by some coefficent we were able to extract $sum_(b=0)^(x-1)[b^(r-
 
 let $K_(r,c)$ be these neutralizing coefficents and therfore the coefficnets on the lower power terms themselves
 
+K_(r,a) depends on K_(r,a-1) which depends on K_(r,a-2) ..., as each k scales all degree terms leaving overlap, goal: find a formula for K_(r,c) using its recurence to lower K(r,c-1...) terms
+ \
+ \ \ \ \ \ \ 
 $
   sum_(b=0)^(x-1)[b^(r-1)] =K_(r,0)x^r + K_(r,1)x^(r-1) + ... + K_(r,r)x^0 \
   sum_(b=0)^(x-1)[b^(r-1)] =sum_(b=0)^(r)[K_(r,b)x^(r-b)]
 $  
+
+$
+x^r = sum_(b=0)^(x-1) [ sum_(c=0)^(r-1)[binom(r,c) b^c ]] + 0^r
+$
+$
+  "inverse of binmial coefficent on term r-1" \
+  K_(r,0) = binom(r,r-1)^(-1) \
+  "inverse of binomal coefficent of lower degree * increase of K_(r,0) and r-2 term binom coefficent" \
+  K_(r,1) = binom((r-1),(r-1)-1)^(-1) (K_(r,0) binom(r,r-2)^(-1) )^(=1)
+  
+$
