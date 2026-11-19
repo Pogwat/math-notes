@@ -50,9 +50,11 @@ $
 $
   "inverse of binmial coefficent on term r-1" \
   K_(r,0) = binom(r,r-1)^(-1) \
-  "inverse of binomal coefficent of lower degree * increase of K_(r,0) and r-2 term binom coefficent" \
-  K_(r,1) = binom((r-1),(r-1)-1)^(-1) (K_(r,0) binom(r,r-2) )^(-1) \
 
-  K_(r,2) =  overbrace(binom((r-2),(r-2)-1)^(-1), "isolate the sum from a lower degree")  overbrace((K_(r,1) K_(r,0) binom(r,r-3))^(-1), "undo the scalling by binom coefficents and previous K_(r,c)'s")
+  K_(r,1) = -K_(r-1,0) (K_(r,0)) binom(r,r-2) \
+
+  "K_(r,c) scales the coefficents of x^(r-c) too" \
+
+  K_(r,2) =  -K_(r-2,0)  ((K_(r,0)) (binom(r,r-3))+K_(r,1)binom(r-1,r-3) )
   
 $
