@@ -17,4 +17,13 @@ m_a=sum_(b_0=0)^(a-1)[sum_(b_1=0)^(b-1)[m_(b_1)]]  - sum_(b_1=0)^(0-1)[m_(b_1)] 
 m_a=sum_(b_0=0)^(a-1)[sum_(b_1=0)^(b-1)[m_(b_1)]] + m_0
 
 
+"a clever substitution in terms of m_a"  \
+m_a=sum_(b=0)^(a-2)[m_b]+ m_(a-1) \
+
+m_a=sum_(b=0)^(a-1)[m_b] \
+m_(a-1) = sum_(b=0)^(a-2)[m_b] \
+m_a=2m_(a-1) \
+m_a=2[2m_(a-2)] \
+m_a=2^(a-1)m_(a-a)\
+
 $
