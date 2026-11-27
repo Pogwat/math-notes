@@ -20,6 +20,10 @@ $
      "for now lets define them as" \
      B_(n,x,i) \
      "where" \
-     (x+n)^r + (B_(n,x,0))^r + (B_(n,x,1))^r +...+(B_(n,x,n))^r = overbrace(sum_(b_0=0)^(r-1)[binom(r,b_0)sum_(b_1=0)^(b_0-1)[binom(b_0,b_1)...sum_(b_n=0)^(b_(n-1)-1)[binom(b_(n-1),b_n)(x)^(b_n)]] ] , n "sums")
+     (x+n)^r + B_(n,x,0) + B_(n,x,1) +...+B_(n,x,n-1) = overbrace(sum_(b_0=0)^(r-1)[binom(r,b_0)sum_(b_1=0)^(b_0-1)[binom(b_0,b_1)...sum_(b_n=0)^(b_(n-1)-1)[binom(b_(n-1),b_n)(x)^(b_n)]] ] , n "sums") \
+     "n contributeds n overlap terms i.e (x+1)^r has 1 overlap term B_(1,x,0) removes it" \
+     (x+1)^r = sum_(b_0=0)^(r-1)[binom(r,b_0)x^b ]+x^r \
+     "as a example" B_(1,x,0) = - (x)^r ", as" (x+1)^r - (x)^r = sum_(b_0=0)^(r-1)[binom(r,b_0)x^b ]
+     
      
 $
