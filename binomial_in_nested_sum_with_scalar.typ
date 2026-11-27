@@ -16,7 +16,10 @@ $
      ((x'+1)+1)^r = sum_(b_0=0)^(r-1)[binom(r,b_0)sum_(b_1=0)^(b_0-1)[binom(b_0,b_1)(x')^(b_1)] - (x')^(b_1)] - (x'+1)^r \
      "those added x'^(b_1...) terms can be removed using this same identity." \
      "hwoever removing them introduces lower term overkap which has to be removed by a lower degree of this indetity and so on,
-     until all overlap and terms are removed"
+     until all overlap and terms are removed" \
+     "for now lets define them as" \
+     B_(n,x,i) \
+     "where" \
+     (x+n)^r + (B_(n,x,0))^r + (B_(n,x,1))^r +...+(B_(n,x,n))^r = overbrace(sum_(b_0=0)^(r-1)[binom(r,b_0)sum_(b_1=0)^(b_0-1)[binom(b_0,b_1)...sum_(b_n=0)^(b_(n-1)-1)[binom(b_(n-1),b_n)(x)^(b_n)]] ] , n "sums")
      
-   
 $
